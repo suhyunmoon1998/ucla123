@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+CS35L Project Proposal
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Team member names: 
+Kesav Kosana: kesavkosana@ucla.edu [Dis 1E Yihan Wang]
 
-## Available Scripts
+Varun Kumar: vvkumar1@ucla.edu [Discussion 1C Arvind Vepa]
 
-In the project directory, you can run:
+Ashvin Bondada: ashvinbondada@g.ucla.edu[Discussion 1B Gaurav Agrawal]
 
-### `npm start`
+Guy Genis: guy.genis@gmail.com [Dis 1E Yihan Wang]
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Soo Hyun Mun: suhyunmoon1998@gmail.com  [Dis 1A Qiu Y]
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Project Idea
+Our project is a web application that allows users to buy and sell clothing items. Users can create accounts and upload their own items for sale such as shoes, shirts, and pants. Users can also purchase items that other people are selling using our checkout process. All users can view a profile page where they can see what’s currently in their cart, items that they currently have for sale, and basic user information such as their username and email. Finally, users can setup alerts to notify them when certain items are in stock or when certain items reach a specific price.
 
-### `npm test`
+The project was motivated because current online reselling platforms have very narrow windows of time where certain products are in stock or are on sale, and it’s difficult for users to act on these opportunities because there’s no easy way to know when the products they want are being sold at the price they want. Our app solves this problem by allowing users to set up the alert system mentioned above.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+Implementation
+We plan on using HTML, JavaScript, React and Node JS tentatively. For now, we plan on using MongoDB and Node for the backend, and React for the frontend.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Features
+When users would like to sell clothing items on our website, they will input details about the item and images of it; this data will be stored in our back-end. The images and descriptions will be dynamically displayed to the user whenever new items are added. Our website also allows users to filter clothing items by category (shoes, shirts, pants, etc.), meaning our app will have to search through server-side data.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+These are the major features of our application:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Users can create accounts and sign in
+Users can see a profile page which shows their cart and items that they’ve posted for sale
+Users can upload their own items for sale
+Store page will show all products, and will allow users to filter by category or search for specific items
+Users can checkout
+Checkout will not use real payments
+Users can set up alerts to get notified when a certain product is on sale or when a certain product reaches a certain price
