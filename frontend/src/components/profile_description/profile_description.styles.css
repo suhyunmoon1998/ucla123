@@ -1,0 +1,27 @@
+.profile-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.balance-header {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.add-funds {
+    font-size: 14px;
+    width: 8%;
+    height: 40px;
+    background-color: white;
+    border: 1px solid black;
+    font-family: inherit;
+}
+
+.add-funds:hover {
+    color: white;
+    border: none;
+    background-color: #417eda;
+    cursor: pointer;
+}
