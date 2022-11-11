@@ -7,7 +7,7 @@ import './home_page.styles.css'
 const HomePage = () => {
     return (
       <div className="home-page">
-        <h1>Home Page</h1>
+        <h1>Explore</h1>
         <div className="products">
           <ProductCard />
           <ProductCard />

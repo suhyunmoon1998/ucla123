@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./sign_in_page.styles.css"
 
 export const Login = (props) => {
   const [email, setEmail] = useState("");
@@ -11,34 +12,37 @@ export const Login = (props) => {
 
   return (
     <div className="auth-form-container">
-      <h2>Login</h2>
-      <form className="login-form" onSubmit={handleSubmit}>
-        <label htmlFor="email">email</label>
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          type="email"
-          placeholder="youremail@gmail.com"
-          id="email"
-          name="email"
-        />
-        <label htmlFor="password">password</label>
-        <input
-          value={pass}
-          onChange={(e) => setPass(e.target.value)}
-          type="password"
-          placeholder="********"
-          id="password"
-          name="password"
-        />
-        <button type="submit">Log In</button>
-      </form>
-      <button
-        className="link-btn"
-        onClick={() => props.onFormSwitch("register")}
-      >
-        Don't have an account? Register here.
-      </button>
+      <h1>Login</h1>
+
+      <div className="auth-form">
+        <div className="login-form" onSubmit={handleSubmit}>
+          <label className="login-headers" htmlFor="email">Email Address</label>
+          <input
+            className="login-email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            placeholder="Email"
+            id="email"
+            name="email"
+          />
+          <label className="login-headers" htmlFor="password">Password</label>
+          <input
+            className="login-password"
+            value={pass}
+            onChange={(e) => setPass(e.target.value)}
+            type="password"
+            placeholder="Password"
+            id="password"
+            name="password"
+          />
+          <button className="submit-button" type="submit">Log In</button>
+        </div>
+      </div>
+      <div className="no-account">
+        <h2 className="link-btn-text">Don't have an account? Register </h2>
+        <h2 className="link-btn-register" onClick={() => props.onFormSwitch("register")}>here</h2>
+      </div>
     </div>
   );
 };

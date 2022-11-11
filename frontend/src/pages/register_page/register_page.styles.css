@@ -1,0 +1,103 @@
+/* form {
+  border: 3px solid #f1f1f1;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid rgb(0, 0, 0);
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #929292;
+  color: rgb(0, 0, 0);
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+} */
+
+
+.auth-form {
+  padding-top: 100px;
+  margin: 0 auto 0 auto;
+  width: 40%;
+  min-width: 350px;
+}
+
+.register-form {
+  border: 3px solid #f1f1f1;
+  display: flex;
+  flex-direction: column;
+}
+
+.register-headers {
+  padding: 10px 0px 10px 0px;
+  text-align: center;
+  margin-top: 40px;
+
+  font-size: 20px;
+  font-family: inherit;
+}
+
+
+.register-name, .register-email, .register-password {
+  margin: 5px auto 50px auto;
+  width: 50%;
+  padding: 15px 15px;
+  border-radius: 10px;
+  display: inline-block;
+  border: 1px solid rgb(165, 163, 163);
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+.submit-button {
+  margin-left: auto;
+  margin-right: auto;
+  margin: 50px auto 50px auto;
+  padding: 15px 15px;
+  width: 20%;
+
+  border-radius: 50px;
+  background-color: white;
+  border: 1px solid rgb(165, 163, 163);
+  font-family: inherit;
+}
+
+.submit-button:hover {
+  color: white;
+  border: none;
+  background-color: #417eda;
+  cursor: pointer;
+}
+
+.no-account {
+  padding-top: 10px;
+  /* display: flex; */
+  text-align: center;
+}
+
+.link-btn-text {
+  color: rgb(27, 27, 27);
+  font-size: 16px;
+  font-weight: 300;
+  display: inline;
+}
+
+.link-btn-register {
+  color: #417eda;
+  display: inline;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.link-btn-register:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

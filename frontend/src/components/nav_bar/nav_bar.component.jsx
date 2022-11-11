@@ -14,7 +14,7 @@ const NavBar = () => {
           <Link to="/profile">Profile</Link>
         </div>
           <div className="link">
-          <Link to="/login">login/signup</Link>
+          <Link to="/login">Login</Link>
         </div>
       </div>
       <Outlet />
