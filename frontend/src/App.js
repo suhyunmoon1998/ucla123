@@ -10,6 +10,7 @@ import { Login } from "./pages/sign_in_page/sign_in_page.component";
 import { Register } from "./pages/register_page/register_page.componet";
 
 import "./App.css";
+import CartPage from "./pages/cart_page/cart_page.component";
 
 function App() {
   
@@ -35,6 +36,7 @@ function App() {
               )
             }
           ></Route>
+          <Route path="cart" element={<CartPage />} />
         </Route>
       </Routes>
     </div>

@@ -1,5 +1,5 @@
 .auth-form {
-    padding-top: 100px;
+    padding-top: 20px;
     margin: 0 auto 0 auto;
     width: 40%;
     min-width: 350px;
@@ -49,13 +49,12 @@
 
 .submit-button:hover {
     color: white;
-    border: none;
     background-color: #417eda;
     cursor: pointer;
 }
 
 .no-account {
-    padding-top: 10px;
+    padding: 20px 0 50px 0;
     /* display: flex; */
     text-align: center;
 }

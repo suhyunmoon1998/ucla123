@@ -15,6 +15,7 @@ const ProductCard = () => {
           <p className="price">$100</p>
         </div>
         <p className="condition">Condition: New</p>
+        <p className="size">Size: 9</p>
       </div>
       <button className="add-to-cart">Add to cart</button>
     </div>
