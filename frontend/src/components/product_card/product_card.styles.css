@@ -52,19 +52,46 @@
     font-family: inherit;
 }
 
-.like {
-    width: 20%;
-    height: 40px;
-    background-color: white;
-    border: 1px solid black;
-    font-family: inherit;
-}
-
 .add-to-cart:hover {
     color: white;
     border: none;
     background-color: #417eda;
     cursor: pointer;
 }
+
+.like {
+    width: 20%;
+    height: 50;
+    background-color: white;
+    border: 1px solid black;
+    font-family: inherit;
+}
+
+label {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 0px;
+    padding: 10px 10px 10px 10px;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 30px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    color: black;
+   }
+   
+input {
+    display: none;
+}  
+   
+input:checked + label svg {
+    fill: hsl(0deg 100% 50%);
+    stroke: hsl(0deg 100% 50%);
+    animation: heartButton 1s;
+} 
+   
+   
+
+   
 
 
