@@ -1,17 +1,24 @@
 .product-card {
-    width: 350px;
+    width: 300px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    border-radius: 30px;
+    border-radius: 15px;
     background: #ffffff;
-    box-shadow:  34px 34px 69px #dedede,
-                    -34px -34px 69px #ffffff;  
+    box-shadow: rgba(224, 224, 230, 0.644) 0px 7px 29px 0px; 
+
+    transition: .4s;
+}
+
+.product-card:hover {
+    transform: scale(1.01);
+    transition: .4s;
 }
 
 .product-card > img {
-    width: 300px;
-    padding-left: 10%;
+    width: 250px;
+    margin-right: auto;
+    margin-left: auto;
     height: auto;
     object-fit: cover;
 }
@@ -24,6 +31,8 @@
 .name_price {
     padding-left: 10%;
     padding-right: 10%;
+    margin-right: auto;
+    margin-left: auto;
     display: flex;
     justify-content: space-between;
 }
@@ -48,7 +57,7 @@
     width: 50%;
     height: 40px;
     background-color: white;
-    border: 1px solid black;
+    border: 1px solid rgb(145, 145, 145);
     font-family: inherit;
 }
 
@@ -63,11 +72,12 @@
     width: 20%;
     height: 50;
     background-color: white;
-    border: 1px solid black;
+    /* border: 1px solid rgb(145, 145, 145); */
+    border-radius: 30px;
     font-family: inherit;
 }
 
-label {
+/* label {
     background-color: transparent;
     display: flex;
     align-items: center;
@@ -76,7 +86,6 @@ label {
     cursor: pointer;
     user-select: none;
     border-radius: 30px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     color: black;
    }
    
@@ -85,13 +94,31 @@ input {
 }  
    
 input:checked + label svg {
-    fill: hsl(0deg 100% 50%);
-    stroke: hsl(0deg 100% 50%);
+    fill: red;
+    stroke: red;
     animation: heartButton 1s;
-} 
+}  */
    
    
 
-   
+.like-button{
+    background: none;
+    border: 0px;
+    box-shadow: none;
+    margin-top: 4%;
+}
 
+.like-button-icon.not-clicked {
+    fill: none;
+    stroke: rgba(46, 46, 46, 0.671);
+}
+  
+.like-button-icon.clicked {
+    fill: rgb(233, 29, 29);
+    stroke: rgb(233, 29, 29);
+}
+
+.like-button-icon.not-clicked:hover {
+    fill: rgba(255, 0, 0, 0.349);
+}
 

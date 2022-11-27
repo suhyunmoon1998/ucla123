@@ -5,9 +5,13 @@
     justify-content: center;
 }
 
+.user-name {
+    margin-top: 20px;
+}
+
 .balance-header {
-    padding-top: 20px;
-    padding-bottom: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .add-funds {

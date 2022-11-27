@@ -6,7 +6,7 @@ const ProductCardCart = () => {
   return (
     <div className="product-card-cart">
       <img
-        src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/4f37fca8-6bce-43e7-ad07-f57ae3c13142/air-force-1-07-mens-shoes-5QFp5Z.png"
+        src="https://cdn.shopify.com/s/files/1/0603/3031/1875/products/main-square_20e8a013-67c2-4e50-979f-0db09e4a54c2_540x.jpg?v=1656492920"
         alt=""
       />
       <div className="description-product-card-cart">

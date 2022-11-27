@@ -7,7 +7,6 @@ const ProfilePage = () => {
   return (
   <div className="profile-container">
     <h1>Profile</h1>
-    
     <ProfileDescription />
     <ProfileTabs />
   </div>

@@ -37,6 +37,7 @@ function App() {
             }
           ></Route>
           <Route path="cart" element={<CartPage />} />
+          {/* <Route path="checkout" element={<CheckoutPage />} /> */}
         </Route>
       </Routes>
     </div>
