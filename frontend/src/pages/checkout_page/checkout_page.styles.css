@@ -1,0 +1,52 @@
+.checkout-form {
+    padding-top: 20px;
+    margin: 0 auto 0 auto;
+    width: 40%;
+    min-width: 350px;
+    display: flex;
+    flex-direction: column;
+
+    border: 3px solid #f1f1f1;
+    background-color: rgba(255, 255, 255, 0.726);
+    border-radius: 15px;
+}
+
+.checkout-headers {
+    padding: 10px 0px 10px 20px;
+    text-align: center;
+    margin-top: 40px;
+  
+    font-size: 20px;
+    font-family: inherit;
+  
+    box-shadow: none;
+}
+
+.checkout-name, .checkout-contact, .checkout-address, .checkout-address-extra, .checkout-card, .checkout-card-extra {
+    margin: 0px auto;
+    width: 60%;
+    padding: 15px 15px;
+    border-radius: 10px;
+    display: inline-block;
+    border: 1px solid rgb(165, 163, 163);
+    box-sizing: border-box;
+    font-size: 18px;
+}
+
+.address-info, .payment-info {
+    width: 60%;
+    margin: 0px auto;
+    padding-top: 5px;
+}
+
+.checkout-address-extra {
+    width: 30%;
+    margin: 1.65%;
+    font-size: 14px;
+}
+
+.checkout-card-extra {
+    width: 48%;
+    margin: 1%;
+    font-size: 14px;
+}

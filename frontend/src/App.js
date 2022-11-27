@@ -7,10 +7,11 @@ import ProfilePage from "./pages/profile_page/profile_page.component";
 
 import NavBar from "./components/nav_bar/nav_bar.component";
 import { Login } from "./pages/sign_in_page/sign_in_page.component";
-import { Register } from "./pages/register_page/register_page.componet";
+import { Register } from "./pages/register_page/register_page.component";
 
 import "./App.css";
 import CartPage from "./pages/cart_page/cart_page.component";
+import CheckoutPage from "./pages/checkout_page/checkout_page.component";
 
 function App() {
   
@@ -37,7 +38,7 @@ function App() {
             }
           ></Route>
           <Route path="cart" element={<CartPage />} />
-          {/* <Route path="checkout" element={<CheckoutPage />} /> */}
+          <Route path="checkout" element={<CheckoutPage />} />
         </Route>
       </Routes>
     </div>
