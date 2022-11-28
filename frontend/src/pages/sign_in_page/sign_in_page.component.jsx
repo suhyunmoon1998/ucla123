@@ -9,7 +9,6 @@ class Login extends Component {
       username: "",
       password: "",
       isSignedIn: false,
-      isMoveToR: false,
     };
     //this.changeFullName = this.changeFullName.bind(this);
 
