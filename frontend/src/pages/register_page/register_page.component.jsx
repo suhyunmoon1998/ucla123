@@ -1,59 +1,112 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
+import "./register_page.styles.css";
+import axios from "axios";
 
-import "./register_page.styles.css"
+class register extends Component {
+  constructor() {
+    super();
+    this.state = {
+      //fullName: "",
+      username: "",
+      email: "",
+      password: "",
+    };
+    //this.changeFullName = this.changeFullName.bind(this);
+    this.changeEmail = this.changeEmail.bind(this);
+    this.changeUsername = this.changeUsername.bind(this);
+    this.changePassword = this.changePassword.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+  /*
+  changeFullName(event) {
+    this.setState({
+      fullName: event.target.value,
+    });
+  }
+*/
 
-export const Register = (props) => {
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-  const [name, setName] = useState("");
+  changeUsername(event) {
+    this.setState({
+      username: event.target.value,
+    });
+  }
+  changeEmail(event) {
+    this.setState({
+      email: event.target.value,
+    });
+  }
+  changePassword(event) {
+    this.setState({
+      password: event.target.value,
+    });
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(email);
-  };
+  onSubmit(event) {
+    event.preventDefault();
 
-  return (
-    <div className="auth-form-container">
-      <h1>Register</h1>
-      <div className="auth-form">
-        <div className="register-form" onSubmit={handleSubmit}>
-          <label className="register-headers" htmlFor="name">Name</label>
-          <input
-            className="register-name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            name="name"
-            id="name"
-            placeholder="Full Name"
-          />
-          <label className="register-headers" htmlFor="email">Email Address</label>
-          <input
-            className="register-email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            placeholder="Email"
-            id="email"
-            name="email"
-          />
-          <label className="register-headers" htmlFor="password">Password</label>
-          <input
-            className="register-password"
-            value={pass}
-            onChange={(e) => setPass(e.target.value)}
-            type="password"
-            placeholder="Password"
-            id="password"
-            name="password"
-          />
-          <button className="submit-button" type="submit">Create Account</button>
+    const registered = {
+      //fullName: this.state.fullName,
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password,
+    };
+    axios
+      .post("http://localhost:4000/app/signup", registered)
+      .then((response) => console.log(response.data));
+    // window.location = "/home";
+    this.setState({
+      //fullName: "",
+      username: "",
+      email: "",
+      password: "",
+    });
+  }
+
+  render() {
+    return (
+      <div className="auth-from-container">
+        <h1>Register</h1>
+        <div className="auth-form">
+          <div className=" register-form">
+            <form onSubmit={this.onSubmit}>
+              <label className="login-headers">username</label>
+              <input
+                className="register-Username"
+                type="text"
+                placeholder="Username"
+                onChange={this.changeUsername}
+                value={this.state.username}
+              />
+
+              <label className="register-headers"> email</label>
+              <input
+                className="register-email"
+                type="text"
+                placeholder="E-mail"
+                onChange={this.changeEmail}
+                value={this.state.email}
+              />
+
+              <label className="register-headers">password</label>
+              <input
+                className="register-password"
+                type="password"
+                placeholder="Password"
+                onChange={this.changePassword}
+                value={this.state.password}
+              />
+
+              <input
+                type="submit"
+                className=" submit-button"
+                value="Register"
+              />
+            </form>
+          </div>
         </div>
       </div>
+    );
+  }
+}
 
-      <div className="no-account">
-        <h2 className="link-btn-text">Already have an account? Login </h2>
-        <h2 className="link-btn-register" onClick={() => props.onFormSwitch("login")}>here</h2>
-      </div>
-    </div>
-  );
-};
+export default register;
