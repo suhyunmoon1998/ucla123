@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const signUpTemplate = new mongoose.Schema({
+const User = new mongoose.Schema({
   /*
   fullName: {
     type: String,
@@ -25,4 +25,4 @@ const signUpTemplate = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("mydb", signUpTemplate);
+module.exports = mongoose.model("mydb", User);
