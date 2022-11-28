@@ -1,48 +1,104 @@
-import React, { useState } from "react";
-import "./sign_in_page.styles.css"
+import React, { Component } from "react";
+import axios from "axios";
+import { Navigate } from "react-router-dom";
+class Login extends Component {
+  constructor() {
+    super();
+    this.state = {
+      // email is removed
+      username: "",
+      password: "",
+      isSignedIn: false,
+      isMoveToR: false,
+    };
+    //this.changeFullName = this.changeFullName.bind(this);
 
-export const Login = (props) => {
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+    this.changeUsername = this.changeUsername.bind(this);
+    this.changePassword = this.changePassword.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(email);
-  };
+  changeUsername(event) {
+    this.setState({
+      username: event.target.value,
+    });
+  }
 
-  return (
-    <div className="auth-form-container">
-      <h1>Login</h1>
+  changePassword(event) {
+    this.setState({
+      password: event.target.value,
+    });
+  }
 
-      <div className="auth-form">
-        <div className="login-form" onSubmit={handleSubmit}>
-          <label className="login-headers" htmlFor="email">Email Address</label>
-          <input
-            className="login-email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            placeholder="Email"
-            id="email"
-            name="email"
-          />
-          <label className="login-headers" htmlFor="password">Password</label>
-          <input
-            className="login-password"
-            value={pass}
-            onChange={(e) => setPass(e.target.value)}
-            type="password"
-            placeholder="Password"
-            id="password"
-            name="password"
-          />
-          <button className="submit-button" type="submit">Log In</button>
+  onSubmit(event) {
+    event.preventDefault();
+    //let history = useHistory();
+    //let navigate = response.useNavigate();
+    const loginData = {
+      //fullName: this.state.fullName,
+      username: this.state.username,
+      password: this.state.password,
+    };
+    axios
+      .post("http://localhost:4000/app/signin", loginData)
+      .then((response) => {
+        let loginRes = response.data;
+        //let navigate = response.useNavigate();
+        if (loginRes.status === 1) {
+          this.setState({ isSignedIn: true });
+        } else {
+          alert(loginRes.message);
+        }
+      });
+
+    this.setState({
+      username: "",
+      password: "",
+    });
+  }
+
+  render() {
+    if (this.state.isSignedIn) {
+      return <Navigate to={{ pathname: "/ " }} />;
+    }
+    return (
+      <div className="auth-from-container">
+        <h1>Welcome to our shopping mall.</h1>
+        <h1>please login to continue</h1>
+        <br></br>
+        <h1>Login</h1>
+        <div className="auth-form">
+          <div className=" register-form">
+            <form onSubmit={this.onSubmit}>
+              <label className="login-headers">username</label>
+              <input
+                className="register-Username"
+                type="text"
+                placeholder="Username"
+                onChange={this.changeUsername}
+                value={this.state.username}
+              />
+
+              <label className="login-headers">password</label>
+              <input
+                className="register-password"
+                type="password"
+                placeholder="Password"
+                onChange={this.changePassword}
+                value={this.state.password}
+              />
+
+              <input
+                type="submit"
+                className=" submit-button"
+                value="Submit"
+              ></input>
+            </form>
+          </div>
         </div>
       </div>
-      <div className="no-account">
-        <h2 className="link-btn-text">Don't have an account? Register </h2>
-        <h2 className="link-btn-register" onClick={() => props.onFormSwitch("register")}>here</h2>
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
+
+export default Login;
