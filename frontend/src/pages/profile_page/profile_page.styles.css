@@ -7,10 +7,8 @@
 .profile-container {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 20px;
 }
-
-
 
 .profile-picture {
     border-radius: 50%;

@@ -1,0 +1,81 @@
+.auth-form {
+    padding-top: 20px;
+    margin: 0 auto 0 auto;
+    width: 40%;
+    min-width: 350px;
+    background-color: rgba(255, 255, 255, 0.726);
+    border: 3px solid #f1f1f1;
+    border-radius: 15px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-headers {
+    padding: 10px 0px 10px 20px;
+    text-align: center;
+    font-size: 20px;
+    font-family: inherit;
+    box-shadow: none;
+}
+
+.login-headers {
+    margin-top: 40px;
+}
+
+.login-username, .login-password {
+    margin: 5px auto 20px auto;
+    width: 50%;
+    padding: 15px 15px;
+    border-radius: 10px;
+    display: inline-block;
+    border: 1px solid rgb(165, 163, 163);
+    box-sizing: border-box;
+    font-size: 18px;
+}
+  
+.submit-button {
+    margin-left: auto;
+    margin-right: auto;
+    margin: 50px auto 50px auto;
+    padding: 15px 15px;
+    width: 20%;
+
+    border-radius: 50px;
+    background-color: white;
+    border: 1px solid rgb(165, 163, 163);
+    font-family: inherit;
+}
+
+.submit-button:hover {
+    color: white;
+    background-color: #417eda;
+    cursor: pointer;
+}
+
+.no-account {
+    padding: 20px 0 50px 0;
+    /* display: flex; */
+    text-align: center;
+}
+
+.link-btn-text {
+    color: rgb(27, 27, 27);
+    font-size: 16px;
+    font-weight: 300;
+    display: inline;
+}
+
+.link-btn-register {
+    color: #417eda;
+    display: inline;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.link-btn-register:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
