@@ -1,0 +1,76 @@
+.add-product-form {
+    padding: 20px;
+    margin: 0 auto 0 auto;
+    width: 40%;
+    min-width: 350px;
+    border: 3px solid #f1f1f1;
+    background-color: rgba(255, 255, 255, 0.726);
+  }
+
+.upload-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-headers {
+  padding: 10px 0px 10px 20px;
+  text-align: center;
+  margin-top: 20px;
+
+  font-size: 20px;
+  font-family: inherit;
+}
+
+.add-title, .add-price {
+  margin: 5px auto 20px auto;
+  width: 70%;
+  padding: 15px 15px;
+  border-radius: 10px;
+  display: inline-block;
+  border: 1px solid rgb(165, 163, 163);
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+.add-description {
+  margin: 5px auto 20px auto;
+  width: 70%;
+  height: 200px;
+  padding: 15px 15px;
+  border-radius: 10px;
+  display: inline-block;
+  border: 1px solid rgb(165, 163, 163);
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+.currency-icon {
+  position: relative;
+  text-align: center;
+}
+
+.currency-icon > i {
+  position: absolute;
+  display: block;
+  transform: translate(220%, -75%);
+  top: 50%;
+  pointer-events: none;
+  width: 25px;
+  text-align: center;
+  font-style: normal;
+}
+
+.currency-icon > input {
+  padding-left: 25px;
+  padding-right: 0;
+}
+
+.var-box-size {
+  text-align: center;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  resize: both;
+  min-height: 40px;
+  line-height: 20px;
+}
