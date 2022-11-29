@@ -38,6 +38,7 @@ router.post("/upload", (request, response) => {
   const uploadedItem = new Item({
     name: request.body.name,
     price: request.body.price,
+    imageUrl: request.body.imageUrl,
   });
   uploadedItem
     .save()
