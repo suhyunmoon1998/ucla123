@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/UserModel");
+const Item = require("../models/ItemModel");
 
 router.post("/signup", (request, response) => {
   const signedUpUser = new User({
@@ -27,6 +28,21 @@ router.post("/signin", (request, response) => {
       } else {
         response.json({ status: 0, message: "Login Failed" });
       }
+    })
+    .catch((error) => {
+      response.json(error);
+    });
+});
+
+router.post("/upload", (request, response) => {
+  const uploadedItem = new Item({
+    name: request.body.name,
+    price: request.body.price,
+  });
+  uploadedItem
+    .save()
+    .then((data) => {
+      response.json(data);
     })
     .catch((error) => {
       response.json(error);
