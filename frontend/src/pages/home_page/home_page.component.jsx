@@ -1,14 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import ProductCard from "../../components/product_card/product_card.component";
-import { run } from "../../services/mongo";
 
 import "./home_page.styles.css";
 
 const HomePage = () => {
-  useEffect(() => {
-    run();
-  }, []);
 
   return (
     <div className="home-page">
