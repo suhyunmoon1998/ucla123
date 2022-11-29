@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
+
+import "./sign_in_page.styles.css";
+
 class Login extends Component {
   constructor() {
     super();
@@ -63,37 +66,35 @@ class Login extends Component {
     return (
       <div className="auth-from-container">
         <h1>Welcome to our shopping mall.</h1>
-        <h1>please login to continue</h1>
+        <h1>Please login to continue</h1>
         <br></br>
         <h1>Login</h1>
         <div className="auth-form">
-          <div className=" register-form">
-            <form onSubmit={this.onSubmit}>
-              <label className="login-headers">username</label>
-              <input
-                className="register-Username"
-                type="text"
-                placeholder="Username"
-                onChange={this.changeUsername}
-                value={this.state.username}
-              />
+          <form className="login-form" onSubmit={this.onSubmit}>
+            <label className="login-headers">username</label>
+            <input
+              className="login-username"
+              type="text"
+              placeholder="Username"
+              onChange={this.changeUsername}
+              value={this.state.username}
+            />
 
-              <label className="login-headers">password</label>
-              <input
-                className="register-password"
-                type="password"
-                placeholder="Password"
-                onChange={this.changePassword}
-                value={this.state.password}
-              />
+            <label className="login-headers">password</label>
+            <input
+              className="login-password"
+              type="password"
+              placeholder="Password"
+              onChange={this.changePassword}
+              value={this.state.password}
+            />
 
-              <input
-                type="submit"
-                className=" submit-button"
-                value="Submit"
-              ></input>
-            </form>
-          </div>
+            <input
+              type="submit"
+              className=" submit-button"
+              value="Submit"
+            ></input>
+          </form>
         </div>
       </div>
     );

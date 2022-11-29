@@ -1,5 +1,5 @@
 .auth-form {
-  padding-top: 20px;
+  padding: 20px;
   margin: 0 auto 0 auto;
   width: 40%;
   min-width: 350px;
@@ -15,17 +15,15 @@
 .register-headers {
   padding: 10px 0px 10px 20px;
   text-align: center;
-  margin-top: 40px;
+  margin-top: 20px;
 
   font-size: 20px;
   font-family: inherit;
-
-  box-shadow: none;
 }
 
 
-.register-name, .register-email, .register-password {
-  margin: 5px auto 50px auto;
+.register-username, .register-email, .register-password {
+  margin: 5px auto 20px auto;
   width: 50%;
   padding: 15px 15px;
   border-radius: 10px;

@@ -64,46 +64,38 @@ class register extends Component {
 
   render() {
     return (
-      <div className="auth-from-container">
+      <div className="auth-form">
         <h1>Register</h1>
-        <div className="auth-form">
-          <div className=" register-form">
-            <form onSubmit={this.onSubmit}>
-              <label className="login-headers">username</label>
-              <input
-                className="register-Username"
-                type="text"
-                placeholder="Username"
-                onChange={this.changeUsername}
-                value={this.state.username}
-              />
+        <form className="register-form" onSubmit={this.onSubmit}>
+          <label className="register-headers">Username</label>
+          <input
+            className="register-username"
+            type="text"
+            placeholder="Username"
+            onChange={this.changeUsername}
+            value={this.state.username}
+          />
 
-              <label className="register-headers"> email</label>
-              <input
-                className="register-email"
-                type="text"
-                placeholder="E-mail"
-                onChange={this.changeEmail}
-                value={this.state.email}
-              />
+          <label className="register-headers"> Email</label>
+          <input
+            className="register-email"
+            type="text"
+            placeholder="E-mail"
+            onChange={this.changeEmail}
+            value={this.state.email}
+          />
 
-              <label className="register-headers">password</label>
-              <input
-                className="register-password"
-                type="password"
-                placeholder="Password"
-                onChange={this.changePassword}
-                value={this.state.password}
-              />
+          <label className="register-headers">Password</label>
+          <input
+            className="register-password"
+            type="password"
+            placeholder="Password"
+            onChange={this.changePassword}
+            value={this.state.password}
+          />
 
-              <input
-                type="submit"
-                className=" submit-button"
-                value="Register"
-              />
-            </form>
-          </div>
-        </div>
+          <input type="submit" className=" submit-button" value="Register" />
+        </form>
       </div>
     );
   }

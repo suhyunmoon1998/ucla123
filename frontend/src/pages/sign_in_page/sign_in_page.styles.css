@@ -25,8 +25,8 @@
     margin-top: 40px;
 }
 
-.login-email, .login-password {
-    margin: 5px auto 50px auto;
+.login-username, .login-password {
+    margin: 5px auto 20px auto;
     width: 50%;
     padding: 15px 15px;
     border-radius: 10px;
