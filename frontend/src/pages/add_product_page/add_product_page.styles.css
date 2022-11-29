@@ -2,14 +2,22 @@
     padding: 20px;
     margin: 0 auto 0 auto;
     width: 40%;
-    min-width: 350px;
+    min-width: 80%;
     border: 3px solid #f1f1f1;
     background-color: rgba(255, 255, 255, 0.726);
+    border-radius: 15px;
   }
 
-.upload-details {
+.upload-picture {
+  width: 50%;
+  float: left;
+}
+
+.upload-product {
   display: flex;
   flex-direction: column;
+  width: 50%;
+  float:right;
 }
 
 .form-headers {
@@ -60,11 +68,6 @@
   font-style: normal;
 }
 
-.currency-icon > input {
-  padding-left: 25px;
-  padding-right: 0;
-}
-
 .var-box-size {
   text-align: center;
   display: block;
@@ -73,4 +76,8 @@
   resize: both;
   min-height: 40px;
   line-height: 20px;
+}
+
+.image {
+  width: 100%;
 }

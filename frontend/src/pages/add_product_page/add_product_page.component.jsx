@@ -11,6 +11,7 @@ class addproduct extends Component {
           condition: "",
           type: "",
           price: null,
+          image: null
 
         };
         this.changeTitle = this.changeTitle.bind(this);
@@ -18,6 +19,7 @@ class addproduct extends Component {
         this.changeCondition = this.changeCondition.bind(this);
         this.changeType = this.changeType.bind(this);
         this.changePrice = this.changePrice.bind(this);
+        this.changeImage = this.changeImage.bind(this);
     }
 
     changeTitle(event) {
@@ -40,13 +42,29 @@ class addproduct extends Component {
         this.setState({
             price: event.target.value,
         });}
+    changeImage(event) {
+        if (event.target.files && event.target.files[0]) {
+            this.setState({
+                image: URL.createObjectURL(event.target.files[0])
+            })
+        }
+    }
     
     render() {
         return(
             <div className='add-product-form'>
-                <h1>Upload New Product</h1> 
-                {/* implement getting image here*/}
-                <form className="upload-details">
+                <h1>Upload New Product</h1>
+                <div className="upload-picture">
+                    <label className="form-headers" >Choose Picture</label>
+                        <img src={this.state.image} className="image"/>
+                        <input 
+                            type="file" 
+                            multiple accept="image/*" 
+                            onChange={this.changeImage} 
+                        />
+                </div> 
+
+                <form className="upload-product">  
                     <label className="form-headers" >Title</label>
                     <input 
                         className="add-title"
@@ -72,14 +90,12 @@ class addproduct extends Component {
                         <i>$</i>
                         <input 
                             className="add-price"
-                            type="text"
+                            type="number"
                             placeholder="420.69"
                             onChange={this.changePrice}
                             value={this.state.price}
                         />
-                        
                     </div>
-                    
                 </form>
             </div>
         )
