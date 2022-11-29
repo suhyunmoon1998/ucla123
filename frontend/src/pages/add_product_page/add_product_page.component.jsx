@@ -96,6 +96,7 @@ class addproduct extends Component {
                             value={this.state.price}
                         />
                     </div>
+                    <input type="submit" className="submit-button" value="Add Product" />
                 </form>
             </div>
         )

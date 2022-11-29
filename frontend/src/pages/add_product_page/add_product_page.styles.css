@@ -81,3 +81,22 @@
 .image {
   width: 100%;
 }
+
+.submit-button {
+  margin-left: auto;
+  margin-right: auto;
+  margin: 50px auto 50px auto;
+  padding: 15px 15px;
+  width: 20%;
+
+  border-radius: 50px;
+  background-color: white;
+  border: 1px solid rgb(165, 163, 163);
+  font-family: inherit;
+}
+
+.submit-button:hover {
+  color: white;
+  background-color: #417eda;
+  cursor: pointer;
+}
