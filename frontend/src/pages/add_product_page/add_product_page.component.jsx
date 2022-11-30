@@ -130,7 +130,7 @@ class addproduct extends Component {
                             <Dropdown
                                 placeHolder="Select..."
                                 options={this.state.types}
-                                // onChange={(value) => console.log(value)}
+                                onChange={this.changeType}
                             />
                         </div>
                     </div>
