@@ -1,23 +1,28 @@
 import React, {useState} from "react";
 
 import "./product_card.styles.css";
+import Items from "./itemslist";
 
-const ProductCard = () => {
+
+const ProductCard = (props) => {
   const [btnClass, setBtnClass] = useState(false);
+  const product = Items ();
 
   return (
     <div className="product-card">
       <img
-        src="https://cdn.shopify.com/s/files/1/0603/3031/1875/products/main-square_20e8a013-67c2-4e50-979f-0db09e4a54c2_540x.jpg?v=1656492920"
+        src= {product.source}
         alt=""
+        height={540}
+        width = {540}
       />
       <div className="description">
         <div className="name_price">
-          <p className="product-name">Nike Sneakers</p>
-          <p className="price">$100</p>
+          <p className="product"> {product.title}</p>
+          <p className="price">{product.price}</p>
         </div>
-        <p className="condition">Condition: New</p>
-        <p className="size">Size: 9</p>
+        <p className="condition">Condition: {product.condition}</p>
+        <p className="size">{product.size}</p>
       </div>
       <div className="actions"
         style={{flexDirection: "row", marginLeft:30, marginRight: 30, marginBottom: 20}}>
