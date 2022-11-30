@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import "./add_product_page.styles.css"
+import Dropdown from "../../components/add_products/dropdown.component";
 
 
 class addproduct extends Component {
@@ -8,11 +9,38 @@ class addproduct extends Component {
         this.state = {
           title: "",
           description: "",
-          condition: "",
+          condition: "hello",
           type: "",
           price: null,
-          image: null
-
+          image: null,
+          conditions: [
+            {
+                value: "new",
+                label: "New"
+            },
+            {
+                value: "light",
+                label: "Lightly Used"
+            },
+            {
+                value: "used",
+                label: "Used"
+            }
+        ],
+        types: [
+            {
+                value: "shirt",
+                label: "Shirt"
+            },
+            {
+                value: "pant",
+                label: "Pant"
+            },
+            {
+                value: "jacket",
+                label: "Jacket"
+            }
+        ]
         };
         this.changeTitle = this.changeTitle.bind(this);
         this.changeDescription = this.changeDescription.bind(this);
@@ -49,6 +77,8 @@ class addproduct extends Component {
             })
         }
     }
+
+    
     
     render() {
         return(
@@ -56,11 +86,11 @@ class addproduct extends Component {
                 <h1>Upload New Product</h1>
                 <div className="upload-picture">
                     <label className="form-headers" >Choose Picture</label>
-                        <img src={this.state.image} className="image"/>
+                        <img src={this.state.image} className="image" alt=""/>
                         <input 
+                            className="image"
                             type="file" 
-                            multiple accept="image/*" 
-                            onChange={this.changeImage} 
+                            onChange={this.changeImage}
                         />
                 </div> 
 
@@ -75,15 +105,36 @@ class addproduct extends Component {
                     />
 
                     <label className="form-headers" >Description</label>
-                    <span className="var-box-size">
+                    <div className="var-box-size" >
                         <input 
+                            id="id-location"
                             className="add-description"
                             type="text"
                             placeholder="Maximum 250 characters"
                             onChange={this.changeDescription}
                             value={this.state.description}
+                            contentEditable="true"
                         />
-                    </span>
+                    </div>
+                    <div>
+                        <div className="drop-condition">
+                            <label className="form-headers" >Condition</label>
+                            <Dropdown
+                                placeHolder="Select..."
+                                options={this.state.conditions}
+                                onChange={this.changeCondition} 
+                            />
+                        </div>
+                        <div className="drop-type">
+                            <label className="form-headers" >Type</label>
+                            <Dropdown
+                                placeHolder="Select..."
+                                options={this.state.types}
+                                // onChange={(value) => console.log(value)}
+                            />
+                        </div>
+                    </div>
+                    
 
                     <label className="form-headers" >Price</label>
                     <div className="currency-icon">
@@ -98,9 +149,9 @@ class addproduct extends Component {
                     </div>
                     <input type="submit" className="submit-button" value="Add Product" />
                 </form>
+
             </div>
-        )
-            
+        ) 
     }
 }
 

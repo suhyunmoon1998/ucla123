@@ -40,6 +40,13 @@
   font-size: 18px;
 }
 
+.var-box-size {
+  min-width: 100%;
+  text-align: center;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
 .add-description {
   margin: 5px auto 20px auto;
   width: 70%;
@@ -68,15 +75,7 @@
   font-style: normal;
 }
 
-.var-box-size {
-  text-align: center;
-  display: block;
-  width: 100%;
-  overflow: hidden;
-  resize: both;
-  min-height: 40px;
-  line-height: 20px;
-}
+
 
 .image {
   width: 100%;
@@ -99,4 +98,16 @@
   color: white;
   background-color: #417eda;
   cursor: pointer;
+}
+
+.drop-condition {
+  text-align: center;
+  width: 49%;
+  float: left
+}
+
+.drop-type {
+  text-align: center;
+  width: 49%;
+  float:right
 }
