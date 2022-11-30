@@ -4,7 +4,6 @@ import "./profile_description.styles.css"
 
 
 const ProfileDescription = () => {
-    const balance = 49.99
     const username = "Varun Kumar"
     return (
         <div className="profile-description">
@@ -14,8 +13,6 @@ const ProfileDescription = () => {
                 alt=""
             />
             <h1 className="user-name">{username}</h1>
-            <h2 className="balance-header">Balance: ${balance}</h2>
-            <button className="add-funds">Add Funds</button>
         </div>
     );
 };

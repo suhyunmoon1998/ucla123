@@ -9,20 +9,6 @@
     margin-top: 20px;
 }
 
-.balance-header {
-    padding-top: 15px;
-    padding-bottom: 15px;
-}
-
-.add-funds {
-    font-size: 14px;
-    width: 8%;
-    height: 40px;
-    background-color: white;
-    border: 1px solid black;
-    font-family: inherit;
-}
-
 .add-funds:hover {
     color: white;
     border: none;
