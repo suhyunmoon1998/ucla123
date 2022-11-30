@@ -60,11 +60,11 @@ class addproduct extends Component {
         });}
     changeCondition(event) {
         this.setState({
-            condition: event.target.value,
+            condition: event.value,
         });}
     changeType(event) {
         this.setState({
-            type: event.target.value,
+            type: event.value,
         });}
     changePrice(event) {
         this.setState({
