@@ -61,7 +61,7 @@ class Login extends Component {
 
   render() {
     if (this.state.isSignedIn) {
-      return <Navigate to={{ pathname: "/ " }} />;
+      return <Navigate to={{ pathname: "/home " }} />;
     }
     return (
       <div className="auth-from-container">
