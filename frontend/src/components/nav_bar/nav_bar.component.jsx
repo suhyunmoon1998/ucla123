@@ -8,16 +8,13 @@ const NavBar = () => {
     <div className="page">
       <div className="nav-bar">
         <div className="link">
-          <Link to="/">Home</Link>
+          <Link to="/home">Home</Link>
         </div>
         <div className="link">
           <Link to="/profile">Profile</Link>
         </div>
         <div className="link">
-          <Link to="/login">Login</Link>
-        </div>
-        <div className="link">
-          <Link to="/register">Register</Link>
+          <Link to="/">log-out</Link>
         </div>
         <div className="link">
           <Link to="/cart">Cart</Link>
@@ -27,5 +24,6 @@ const NavBar = () => {
     </div>
   );
 };
+
 
 export default NavBar;
