@@ -8,7 +8,7 @@ const F_NavBar = () => {
     <div className="page">
       <div className="nav-bar">
         <div className="link">
-          <Link to="">signin</Link>
+          <Link to="">Sign in</Link>
         </div>
         <div className="link">
           <Link to="/register">Register</Link>

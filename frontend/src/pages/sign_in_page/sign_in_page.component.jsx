@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 
 import "./sign_in_page.styles.css";
 
@@ -65,13 +65,12 @@ class Login extends Component {
     }
     return (
       <div className="auth-from-container">
-        <h1>Welcome to our shopping mall.</h1>
-        <h1>Please login to continue</h1>
-        <br></br>
+        {/* <h1>Welcome to our shopping mall.</h1>
+        <h1>Please login to continue</h1> */}
         <h1>Login</h1>
         <div className="auth-form">
           <form className="login-form" onSubmit={this.onSubmit}>
-            <label className="login-headers">username</label>
+            <label className="login-headers">Username</label>
             <input
               className="login-username"
               type="text"
@@ -80,7 +79,7 @@ class Login extends Component {
               value={this.state.username}
             />
 
-            <label className="login-headers">password</label>
+            <label className="login-headers">Password</label>
             <input
               className="login-password"
               type="password"
@@ -95,6 +94,10 @@ class Login extends Component {
               value="Submit"
             ></input>
           </form>
+        </div>
+        <div className="no-account">
+          <h2 className="link-btn-text">Don't have an account? Register </h2>
+          <Link className="link-btn-register" to="/register">here</Link>
         </div>
       </div>
     );

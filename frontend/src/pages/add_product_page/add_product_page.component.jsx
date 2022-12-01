@@ -133,6 +133,10 @@ class addproduct extends Component {
       ],
       types: [
         {
+          value: "shoes",
+          label: "Shoes",
+        },
+        {
           value: "shirt",
           label: "Shirt",
         },
@@ -225,17 +229,19 @@ class addproduct extends Component {
       <div className="add-product-form">
         <h1>Upload New Product</h1>
         <div className="upload-picture">
-          <label className="form-headers">Choose Picture</label>
-          <img src={this.state.image} className="image" alt="" />
+          <div className="form-header-picture">
+            <label>Choose Picture</label>
+          </div>
           <input className="image" type="file" onChange={this.changeImage} />
+          <img src={this.state.image} className="image" alt="" />
         </div>
 
         <form className="upload-product" onSubmit={this.handleSubmit}>
-          <label className="form-headers">Title</label>
+          <label className="form-headers">Item Name</label>
           <input
             className="add-title"
             type="text"
-            placeholder="John Doe's Socks"
+            placeholder="Ex. Nike Shoes"
             onChange={this.changeTitle}
             value={this.state.title}
           />
@@ -246,23 +252,27 @@ class addproduct extends Component {
               id="id-location"
               className="add-description"
               type="text"
-              placeholder="Maximum 250 characters"
+              placeholder="Description"
               onChange={this.changeDescription}
               value={this.state.description}
               contentEditable="true"
             />
           </div>
-          <div>
+          <div className="drop-condition-container">
             <div className="drop-condition">
-              <label className="form-headers">Condition</label>
-              <Dropdown
-                placeHolder="Select..."
-                options={this.state.conditions}
-                onChange={this.changeCondition}
-              />
+              <div className="form-headers">
+                <label>Condition</label>
+              </div>
+                <Dropdown
+                  placeHolder="Select..."
+                  options={this.state.conditions}
+                  onChange={this.changeCondition}
+                />
             </div>
             <div className="drop-type">
-              <label className="form-headers">Type</label>
+              <div className="form-headers">
+                <label>Type</label>
+              </div>
               <Dropdown
                 placeHolder="Select..."
                 options={this.state.types}
@@ -277,7 +287,7 @@ class addproduct extends Component {
             <input
               className="add-price"
               type="number"
-              placeholder="420.69"
+              placeholder="99.99"
               onChange={this.changePrice}
               value={this.state.price}
             />

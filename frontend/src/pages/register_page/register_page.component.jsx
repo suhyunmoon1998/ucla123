@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./register_page.styles.css";
 import axios from "axios";
 
@@ -64,38 +65,45 @@ class register extends Component {
 
   render() {
     return (
-      <div className="auth-form">
+      <div className="auth-from-container">
+        {/* <h1>Welcome to our shopping mall.</h1>
+        <h1>Please login to continue</h1> */}
         <h1>Register</h1>
-        <form className="register-form" onSubmit={this.onSubmit}>
-          <label className="register-headers">Username</label>
-          <input
-            className="register-username"
-            type="text"
-            placeholder="Username"
-            onChange={this.changeUsername}
-            value={this.state.username}
-          />
+        <div className="auth-form">
+          <form className="register-form" onSubmit={this.onSubmit}>
+            <label className="register-headers">Username</label>
+            <input
+              className="register-username"
+              type="text"
+              placeholder="Username"
+              onChange={this.changeUsername}
+              value={this.state.username}
+            />
 
-          <label className="register-headers"> Email</label>
-          <input
-            className="register-email"
-            type="text"
-            placeholder="E-mail"
-            onChange={this.changeEmail}
-            value={this.state.email}
-          />
+            <label className="register-headers"> Email</label>
+            <input
+              className="register-email"
+              type="text"
+              placeholder="E-mail"
+              onChange={this.changeEmail}
+              value={this.state.email}
+            />
 
-          <label className="register-headers">Password</label>
-          <input
-            className="register-password"
-            type="password"
-            placeholder="Password"
-            onChange={this.changePassword}
-            value={this.state.password}
-          />
-
-          <input type="submit" className=" submit-button" value="Register" />
-        </form>
+            <label className="register-headers">Password</label>
+            <input
+              className="register-password"
+              type="password"
+              placeholder="Password"
+              onChange={this.changePassword}
+              value={this.state.password}
+            />
+            <input type="submit" className=" submit-button" value="Register" />
+          </form>
+        </div>
+        <div className="no-account">
+          <h2 className="link-btn-text">Already have an account? Login </h2>
+          <Link className="link-btn-register" to="/">here</Link>
+        </div>
       </div>
     );
   }

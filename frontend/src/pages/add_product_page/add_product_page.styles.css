@@ -20,17 +20,24 @@
   float:right;
 }
 
-.form-headers {
-  padding: 10px 0px 10px 20px;
-  text-align: center;
-  margin-top: 20px;
+.form-header-picture {
+  padding: 30px 0px 5px 0px;
+}
 
+.form-headers {
+  padding: 30px 0px 10px 0px;
+  text-align: center;
   font-size: 20px;
   font-family: inherit;
 }
 
+.dropdown-select {
+  width: 50px;
+
+}
+
 .add-title, .add-price {
-  margin: 5px auto 20px auto;
+  margin: 0px auto 0px auto;
   width: 70%;
   padding: 15px 15px;
   border-radius: 10px;
@@ -48,7 +55,7 @@
 }
 
 .add-description {
-  margin: 5px auto 20px auto;
+  margin: 0px auto 0px auto;
   width: 70%;
   padding: 15px 15px;
   border-radius: 10px;
@@ -74,8 +81,6 @@
   font-style: normal;
 }
 
-
-
 .image {
   width: 100%;
 }
@@ -99,14 +104,23 @@
   cursor: pointer;
 }
 
+.drop-condition-container {
+  display: flex;
+  flex-direction: row;
+}
+
 .drop-condition {
+  margin-left: auto;
+  margin-right: 1%;
   text-align: center;
-  width: 49%;
+  width: 34%;
   float: left
 }
 
 .drop-type {
+  margin-left: 1%;
+  margin-right: auto;
   text-align: center;
-  width: 49%;
+  width: 34%;
   float:right
 }

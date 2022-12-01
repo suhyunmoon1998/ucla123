@@ -11,16 +11,16 @@ const NavBar = () => {
           <Link to="/home">Home</Link>
         </div>
         <div className="link">
-          <Link to="/profile">Profile</Link>
-        </div>
-        <div className="link">
-          <Link to="/">log-out</Link>
+          <Link to="/addproduct">Sell Product</Link>
         </div>
         <div className="link">
           <Link to="/cart">Cart</Link>
         </div>
         <div className="link">
-          <Link to="/addproduct">Add Product</Link>
+          <Link to="/profile">Profile</Link>
+        </div>
+        <div className="link">
+          <Link to="/">Log Out</Link>
         </div>
       </div>
       <Outlet />
