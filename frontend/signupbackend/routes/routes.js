@@ -36,9 +36,11 @@ router.post("/signin", (request, response) => {
 
 router.post("/upload", (request, response) => {
   const uploadedItem = new Item({
-    name: request.body.name,
-    price: request.body.price,
-    imageUrl: request.body.imageUrl,
+    title: request.body.title,
+    description: request.body.description,
+    image: request.body.image,
+    condition: request.body.condition,
+    type: request.body.type,
   });
   uploadedItem
     .save()

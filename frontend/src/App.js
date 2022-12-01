@@ -11,6 +11,8 @@ import Login from "./pages/sign_in_page/sign_in_page.component";
 import "./App.css";
 import CartPage from "./pages/cart_page/cart_page.component";
 import CheckoutPage from "./pages/checkout_page/checkout_page.component";
+import AddProduct from "./pages/add_product_page/add_product_page.component"
+
 
 function App() {
   
@@ -33,6 +35,7 @@ function App() {
           <Route path="register" element={<Register />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="checkout" element={<CheckoutPage />} />
+          <Route path="addproduct" element={<AddProduct />} />
         </Route>
       </Routes>
     </div>
