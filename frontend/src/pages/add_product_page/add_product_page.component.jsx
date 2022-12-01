@@ -1,4 +1,5 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
+import axios from 'axios';
 import "./add_product_page.styles.css"
 import Dropdown from "../../components/add_products/dropdown.component";
 
@@ -48,6 +49,7 @@ class addproduct extends Component {
         this.changeType = this.changeType.bind(this);
         this.changePrice = this.changePrice.bind(this);
         this.changeImage = this.changeImage.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     changeTitle(event) {
@@ -77,6 +79,32 @@ class addproduct extends Component {
             })
         }
     }
+    handleSubmit = (e) => {
+        e.preventDefault()
+        const product = {
+            title: this.state.title,
+            description: this.state.description,
+            image: this.state.image,
+            condition: this.state.condition,
+            type: this.state.type,
+            price: this.state.price
+        }
+        // pass into mongo
+        axios
+            .post("http://localhost:4000/app/upload", product)
+            .then((response) => console.log(response.data));
+        // window.location = "/home";
+        this.setState({
+        //fullName: "",
+        title: "",
+        description: "",
+        image: null,
+        condition: "",
+        type: "",
+        price: null
+    });
+
+    }
 
     
     
@@ -94,7 +122,7 @@ class addproduct extends Component {
                         />
                 </div> 
 
-                <form className="upload-product">  
+                <form className="upload-product" onSubmit={this.handleSubmit}>  
                     <label className="form-headers" >Title</label>
                     <input 
                         className="add-title"
