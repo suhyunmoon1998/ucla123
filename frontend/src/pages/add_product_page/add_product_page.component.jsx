@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AWS from "aws-sdk";
+import { Navigate, Link } from "react-router-dom";
 import axios from "axios";
 
 import Dropdown from "../../components/add_products/dropdown.component";
@@ -117,6 +118,8 @@ class addproduct extends Component {
       type: "",
       price: null,
       image: null,
+      displayImage: null,
+      isAdded: false,
       conditions: [
         {
           value: "new",
@@ -195,6 +198,7 @@ class addproduct extends Component {
     if (event.target.files && event.target.files[0]) {
       this.setState({
         image: url,
+        displayImage: URL.createObjectURL(file)
       });
     }
   }
@@ -211,7 +215,12 @@ class addproduct extends Component {
     // pass into mongo
     axios
       .post("http://localhost:4000/app/upload", product)
-      .then((response) => console.log(response.data));
+      .then((response) => {
+        // let addProductres = response.data;
+        this.setState({ isAdded: true });
+        // alert(addProductres.message);
+      });
+      
     // window.location = "/home";
     this.setState({
       //fullName: "",
@@ -225,6 +234,9 @@ class addproduct extends Component {
   };
 
   render() {
+    if (this.state.isAdded) {
+      return <Navigate to={{ pathname: "/profile" }} />;
+    }
     return (
       <div className="add-product-form">
         <h1>Upload New Product</h1>
@@ -233,7 +245,7 @@ class addproduct extends Component {
             <label>Choose Picture</label>
           </div>
           <input className="image" type="file" onChange={this.changeImage} />
-          <img src={this.state.image} className="image" alt="" />
+          <img src={this.state.displayImage} className="image" alt="" />
         </div>
 
         <form className="upload-product" onSubmit={this.handleSubmit}>
