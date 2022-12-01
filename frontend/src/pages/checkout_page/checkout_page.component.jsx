@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Navigate, useNavigate } from "react-router-dom";
 
 import './checkout_page.styles.css'
 
@@ -7,6 +8,7 @@ const CheckoutPage = () => {
     // const [email, setEmail] = useState("");
     // const [address, setAddress] = useState("");
     // const [payment, setPayment] = useState("");
+    let navigate = useNavigate()
 
     return (
         <div className="checkout-page">
@@ -75,7 +77,7 @@ const CheckoutPage = () => {
                 placeholder="Exp. Date"
                 />
             </div>
-            <button className="submit-button" type="submit">Submit</button>
+            <button className="submit-button" type="submit" onClick={() => navigate("/home")}>Submit</button>
         </div>
       </div>
     );
