@@ -69,7 +69,9 @@ class register extends Component {
         {/* <h1>Welcome to our shopping mall.</h1>
         <h1>Please login to continue</h1> */}
        <center>
-          <h1>Register</h1>
+          <div className="h1">
+            <h1>Register</h1>
+          </div>
         </center>
         <div className="auth-form">
           <form className="register-form" onSubmit={this.onSubmit}>
