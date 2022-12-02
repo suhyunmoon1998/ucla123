@@ -5,7 +5,6 @@ const Item = require("../models/ItemModel");
 
 router.post("/signup", (request, response) => {
   const signedUpUser = new User({
-    //fullName: request.body.fullName,
     username: request.body.username,
     email: request.body.email,
     password: request.body.password,
@@ -34,6 +33,53 @@ router.post("/signin", (request, response) => {
     });
 });
 
+router.post("/addtocart", (request, response) => {
+  if (request.body.username === undefined) {
+    response.json({ status: 0, message: "Login First" });
+    return;
+  }
+
+  const userSearch = { username: request.body.username };
+  const new_item = request.body.product;
+  let cart = [];
+
+  console.log(userSearch);
+
+  // find the user and get their current cart
+  User.findOne(userSearch)
+    .then((data) => {
+      console.log("data", data);
+      if (data) {
+        cart = data.cart;
+        console.log("cart", cart);
+
+        if (cart.includes(new_item)) {
+          response.json({ status: 0, message: "Item already in cart" });
+          return;
+        }
+
+        console.log("old cart", cart);
+        cart.push(new_item);
+        console.log("updated cart", cart);
+
+        User.updateOne(userSearch, { $set: { cart: cart } }).then((data) => {
+          if (data) {
+            response.json({ status: 1, message: "Item added to cart" });
+          } else {
+            response.json({ status: 0, message: "Item not added to cart" });
+          }
+        });
+      } else {
+        response.json({ status: 0, message: "Login First" });
+        return;
+      }
+    })
+    .catch((error) => {
+      response.json(error);
+      return;
+    });
+});
+
 router.post("/upload", (request, response) => {
   const uploadedItem = new Item({
     title: request.body.title,
@@ -53,15 +99,15 @@ router.post("/upload", (request, response) => {
     });
 });
 
-router.get('/products', (req, res) => {
-  Item.find(function(err, items) {
+router.get("/products", (req, res) => {
+  Item.find((err, items) => {
     if (err) {
-        console.log(err);
+      console.log(err);
     } else {
-        res.json(items);
+      res.json(items);
     }
+    return "done";
   });
 });
-
 
 module.exports = router;

@@ -21,8 +21,8 @@ const HomePage = () => {
     <div className="home-page">
       <h1>Home Page</h1>
       <div className="products">
-        {products.map((product) => {
-            return <ProductCard name={product.title} condition={product.condition} image_url={product.image} price={product.price} size={product.size}/>
+        {products.map((product, index) => {
+            return <ProductCard key={index} name={product.title} condition={product.condition} image_url={product.image} price={product.price} size={product.size}/>
         })}
       </div>
     </div>

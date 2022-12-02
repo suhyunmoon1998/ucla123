@@ -1,9 +1,37 @@
 import React, { useState } from "react";
+import axios from "axios";
+
+import useUserContext from "../../context/user.context";
+
+import { ReactComponent as LoadingIcon } from "../../assets/loading-animation.svg";
 
 import "./product_card.styles.css";
 
 const ProductCard = ({ name, condition, image_url, price, size }) => {
   const [btnClass, setBtnClass] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const { username } = useUserContext();
+
+  function addToCart() {
+    const productData = {name, condition, image_url, price, size};
+
+    const cartObject = { username, product: productData };
+    setLoading(true);
+
+    axios
+      .post("http://localhost:4000/app/addtocart", cartObject)
+      .then((response) => {
+        setLoading(false);
+        console.log(response);
+        const data = response.data;
+
+        if (data.message === "Login First") {
+          alert("Please login before adding to cart");
+          return;
+        }
+      });
+  }
 
   return (
     <div className="product-card">
@@ -27,7 +55,10 @@ const ProductCard = ({ name, condition, image_url, price, size }) => {
           marginBottom: 20,
         }}
       >
-        <button className="add-to-cart">Add to cart</button>
+        <button className="add-to-cart" onClick={addToCart}>
+          Add to cart
+          {loading && <LoadingIcon className='loading-icon' />}
+        </button>
         <button
           onClick={() => {
             btnClass ? setBtnClass(false) : setBtnClass(true);

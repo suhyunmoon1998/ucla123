@@ -65,6 +65,14 @@
     background-color: white;
     border: 1px solid rgb(145, 145, 145);
     font-family: inherit;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-icon {
+    height: 30px;
 }
 
 .add-to-cart:hover {
