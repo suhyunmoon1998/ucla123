@@ -7,7 +7,7 @@
 4. run npm install
 5. cd into frontend (from the root directory)
 6. Run npm start
-7. cd into frontend/signupbackend (from the root directory)
+7. In a different terminal, cd into frontend/signupbackend (from the root directory)
 8. Run npm start
 
 ## Project Description
