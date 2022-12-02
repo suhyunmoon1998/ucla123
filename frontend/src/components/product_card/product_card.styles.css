@@ -23,6 +23,10 @@
     object-fit: cover;
 }
 
+.image-product {
+    margin-top: 15px
+}
+
 .text {
     display: flex;
     flex-direction: column;

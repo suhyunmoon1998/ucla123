@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import AWS from "aws-sdk";
 import { Navigate, Link } from "react-router-dom";
 import axios from "axios";
@@ -122,33 +122,33 @@ class addproduct extends Component {
       isAdded: false,
       conditions: [
         {
-          value: "new",
+          value: "New",
           label: "New",
         },
         {
-          value: "light",
+          value: "Light",
           label: "Lightly Used",
         },
         {
-          value: "used",
+          value: "Used",
           label: "Used",
         },
       ],
       types: [
         {
-          value: "shoes",
+          value: "Shoes",
           label: "Shoes",
         },
         {
-          value: "shirt",
+          value: "Shirt",
           label: "Shirt",
         },
         {
-          value: "pant",
+          value: "Pant",
           label: "Pant",
         },
         {
-          value: "jacket",
+          value: "Jacket",
           label: "Jacket",
         },
       ],
@@ -206,7 +206,7 @@ class addproduct extends Component {
     e.preventDefault();
     const product = {
       title: this.state.title,
-      description: this.state.description,
+      size: this.state.description,
       image: "url",
       condition: this.state.condition,
       type: this.state.type,
@@ -218,6 +218,8 @@ class addproduct extends Component {
       .then((response) => {
         // let addProductres = response.data;
         this.setState({ isAdded: true });
+        console.log(response)
+        // console.log("\n")
         // alert(addProductres.message);
       });
       
@@ -258,13 +260,13 @@ class addproduct extends Component {
             value={this.state.title}
           />
 
-          <label className="form-headers">Description</label>
+          <label className="form-headers">Size</label>
           <div className="var-box-size">
             <input
               id="id-location"
               className="add-description"
               type="text"
-              placeholder="Description"
+              placeholder="Size"
               onChange={this.changeDescription}
               value={this.state.description}
               contentEditable="true"

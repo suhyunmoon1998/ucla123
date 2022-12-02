@@ -2,12 +2,13 @@ import React, {useState} from "react";
 
 import "./product_card.styles.css";
 
-const ProductCard = ({image_url, price, size}) => {
+const ProductCard = ({name, condition, image_url, price, size}) => {
   const [btnClass, setBtnClass] = useState(false);
 
   return (
     <div className="product-card">
       <img
+        className="image-product"
         src= {image_url}
         alt=""
         height={540}
@@ -15,11 +16,11 @@ const ProductCard = ({image_url, price, size}) => {
       />
       <div className="description">
         <div className="name_price">
-          <p className="product-name">Nike Sneakers</p>
+          <p className="product-name">{name}</p>
           <p className="price">${price}</p>
         </div>
-        <p className="condition">Condition: New</p>
-        <p className="size">{size}</p>
+        <p className="condition">Condition: {condition}</p>
+        <p className="size">Size: {size}</p>
       </div>
       <div className="actions"
         style={{flexDirection: "row", marginLeft:30, marginRight: 30, marginBottom: 20}}>
