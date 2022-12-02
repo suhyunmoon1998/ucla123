@@ -75,3 +75,7 @@
   text-decoration: underline;
   cursor: pointer;
 }
+.h1 {
+  font-size: 60px;
+  color: #f1f1f1;
+}
