@@ -97,12 +97,14 @@ class register extends Component {
               onChange={this.changePassword}
               value={this.state.password}
             />
-            <input type="submit" className=" submit-button" value="Register" />
+            <Link to="/" className="submit-button-link" >
+              <input type="submit" className=" submit-button" value="Register" ></input>
+            </Link>
           </form>
         </div>
         <div className="no-account">
           <h2 className="link-btn-text">Already have an account? Login </h2>
-          <Link className="link-btn-register" to="/">here</Link>
+          <Link to="/" className="link-btn-register" >here</Link>
         </div>
       </div>
     );
