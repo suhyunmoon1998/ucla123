@@ -9,6 +9,7 @@ import "./checkout_page.styles.css";
 const CheckoutPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const [allItems, setAllItems] = useState([]);
+  const [click, setClick] = useState(0);
 
   let navigate = useNavigate();
   let { username, loggedIn } = useUserContext();
@@ -67,15 +68,10 @@ const CheckoutPage = () => {
     }
 
     // remove cart items from cart
-    await axios
-      .post("http://localhost:4000/app/emptycart", { username })
-      .then((response) => {
-        if (response.data) {
-          alert("Checked out");
-        }
-      });
+    axios
+      .post("http://localhost:4000/app/emptycart", { username });
 
-    console.log("cartItemsUpdated: ", cartItems);
+    
     // remove cart items from liked
     for (let i = 0; i < cartItems.length; i++) {
       await axios.post("http://localhost:4000/app/removefromliked", {
@@ -84,17 +80,21 @@ const CheckoutPage = () => {
       });
     }
 
+    console.log("cartItemsUpdated: ", cartItems);
     // remove cart items from homepage
     for (let i = 0; i < cartItems.length; i++) {
-      await axios.delete("http://localhost:4000/app/removeproduct", {
-        product: { title: cartItems[i].name },
-      });
+      const productData = { product: { title: cartItems[i].name } }
+      axios.post("http://localhost:4000/app/removeproduct", productData);
     }
 
     // redirect to home page
+    setClick(click+1)
+    console.log(click)
 
-    // alert("submitted");
-    // navigate("/home");
+    if (click===2) {
+      alert("submitted");
+      navigate("/home");
+    }
   };
 
   return (

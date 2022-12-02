@@ -411,9 +411,8 @@ router.get("/users/:name", function (req, res) {
     });
 });
 
-router.delete('/removeproduct', function(req, res) {
-  const item = req.body.product; 
-  console.log("item", item)
+router.post('/removeproduct', (request, response) => {
+  const item = request.body.product; 
   Item.deleteOne(item)
   .then((response) => {
       console.log(response)
