@@ -15,3 +15,24 @@
     background-color: #417eda;
     cursor: pointer;
 }
+
+.profile-picture-logo {
+    border-radius: 250px;
+    background: #ffffff;
+    box-shadow: rgba(175, 175, 180, 0.644) 0px 7px 29px 0px; 
+
+    transition: .4s;
+
+    height: 200px;
+    width: 200px;
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 50px;
+}
+
+.profile-logo-letters {
+    font-size: 64px;
+}
