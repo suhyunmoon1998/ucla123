@@ -26,6 +26,10 @@ const User = new mongoose.Schema({
   cart: {
     type: Array,
     default: [],
+  },
+  liked: {
+    type: Array,
+    default: []
   }
 });
 

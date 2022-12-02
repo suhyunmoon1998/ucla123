@@ -9,7 +9,8 @@ import "./product_card.styles.css";
 
 const ProductCard = ({ name, condition, image_url, price, size }) => {
   const [btnClass, setBtnClass] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [cartLoading, setCartLoading] = useState(false);
+  const [likedLoading, setLikedLoading] = useState(false);
 
   const { username } = useUserContext();
 
@@ -17,17 +18,37 @@ const ProductCard = ({ name, condition, image_url, price, size }) => {
     const productData = {name, condition, image_url, price, size};
 
     const cartObject = { username, product: productData };
-    setLoading(true);
+    setCartLoading(true);
 
     axios
       .post("http://localhost:4000/app/addtocart", cartObject)
       .then((response) => {
-        setLoading(false);
+        setCartLoading(false);
         console.log(response);
         const data = response.data;
 
         if (data.message === "Login First") {
           alert("Please login before adding to cart");
+          return;
+        }
+      });
+  }
+
+  function addToLiked() {
+    const productData = { name, condition, image_url, price, size };
+
+    const likedObject = { username, product: productData };
+    setLikedLoading(true);
+
+    axios
+      .post("http://localhost:4000/app/addtoliked", likedObject)
+      .then((response) => {
+        setLikedLoading(false);
+        console.log(response);
+        const data = response.data;
+
+        if (data.message === "Login First") {
+          alert("Please login before adding to liked");
           return;
         }
       });
@@ -57,11 +78,12 @@ const ProductCard = ({ name, condition, image_url, price, size }) => {
       >
         <button className="add-to-cart" onClick={addToCart}>
           Add to cart
-          {loading && <LoadingIcon className='loading-icon' />}
+          {cartLoading && <LoadingIcon className="loading-icon" />}
         </button>
         <button
           onClick={() => {
             btnClass ? setBtnClass(false) : setBtnClass(true);
+            addToLiked();
           }}
           className="like-button"
         >
