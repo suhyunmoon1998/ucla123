@@ -23,6 +23,18 @@ const User = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  cart: {
+    type: Array,
+    default: [],
+  },
+  liked: {
+    type: Array,
+    default: [],
+  },
+  forSale: {
+    type: Array,
+    default: [],
+  },
 });
 
 module.exports = mongoose.model("mydb", User);

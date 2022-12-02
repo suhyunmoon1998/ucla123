@@ -1,9 +1,13 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 
-import './nav_bar.styles.css'
+import useUserContext from "../../context/user.context";
+
+import "./nav_bar.styles.css";
 
 const NavBar = () => {
+  const { logout } = useUserContext();
+
   return (
     <div className="page">
       <div className="nav-bar">
@@ -19,7 +23,7 @@ const NavBar = () => {
         <div className="link">
           <Link to="/profile">Profile</Link>
         </div>
-        <div className="link">
+        <div className="link" onClick={logout}>
           <Link to="/">Log Out</Link>
         </div>
       </div>
@@ -27,6 +31,5 @@ const NavBar = () => {
     </div>
   );
 };
-
 
 export default NavBar;
