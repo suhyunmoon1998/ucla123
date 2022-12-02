@@ -16,7 +16,8 @@
     height: auto;
 }
 
-.h1 {
-  font-size: 60px;
-  color: #f1f1f1;
+
+.profile-page-header {
+    font-size: 100px;
+    color: #f1f1f1;
 }

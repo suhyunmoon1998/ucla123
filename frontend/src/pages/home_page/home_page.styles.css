@@ -4,8 +4,9 @@
     gap: 40px;
 }
 
-.home-page > h1 {
-    font-size: 30px;
+.home-page-header {
+    font-size: 45px;
+    color: #f1f1f1;
 }
 
 .products {
@@ -13,7 +14,4 @@
     flex-wrap: wrap;
     gap: 30px;
 }
-.h1 {
-  font-size: 60px;
-  color: #f1f1f1;
-}
+

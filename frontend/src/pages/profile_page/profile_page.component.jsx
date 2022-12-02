@@ -8,7 +8,7 @@ const ProfilePage = () => {
   <div className="profile-container">
      <center>
         <div className="h1">
-          <h1>Profile</h1>
+          <h1 className='profile-page-header'>Profile</h1>
         </div>
       </center>
     <ProfileDescription />

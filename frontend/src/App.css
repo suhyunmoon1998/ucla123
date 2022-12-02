@@ -1,6 +1,12 @@
 .app {
     padding: 40px;
     background-color: #e8e8e8;
-    background-image: url("street-wear.jpg");
+    /* background-image: url("street-wear.jpg"); */
+    background: rgb(183,185,191);
+    background: linear-gradient(90deg, rgba(183,185,191,1) 0%, rgb(206, 209, 211) 35%, rgba(191,195,198,1) 100%);
     min-height: 100vh;
+}
+
+h1 {
+    color: rgb(44, 44, 44) !important;
 }

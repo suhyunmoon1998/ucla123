@@ -50,7 +50,7 @@ const Login = () => {
         <h1>Please login to continue</h1> */}
       <center>
         <div className="h1">
-          <h1>Login</h1>
+          <h1 className="login-page-header">Login</h1>
         </div>
       </center>
       <div className="auth-form">

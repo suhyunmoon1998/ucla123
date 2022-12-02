@@ -70,7 +70,7 @@ class register extends Component {
         <h1>Please login to continue</h1> */}
        <center>
           <div className="h1">
-            <h1>Register</h1>
+            <h1 className="login-page-header">Register</h1>
           </div>
         </center>
         <div className="auth-form">

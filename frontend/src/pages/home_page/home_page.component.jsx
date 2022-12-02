@@ -56,7 +56,7 @@ const HomePage = () => {
   return (
      <div className="home-page">
       <center>
-        <div className="h1">
+        <div className="home-page-header">
           <h1>Home Page</h1>
         </div>
         <div className="filter-container" style={{ width: 250 }}>
