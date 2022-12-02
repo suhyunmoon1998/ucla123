@@ -149,4 +149,16 @@ router.get("/products", (req, res) => {
   });
 });
 
+
+router.get('/users/:name', function(req, res) {
+  return User.find({username: req.params.name}).then(function(orders) { 
+      // return orders when resolved
+      res.send(orders);
+  })
+  .catch(function (error) {
+      // handle error
+      console.log(error);
+  })
+});
+
 module.exports = router;

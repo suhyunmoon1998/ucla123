@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react'
 import "./profile_page.styles.css"
 import ProfileTabs from '../../components/profile_tabs/profile_tabs.component'
 import ProfileDescription from "../../components/profile_description/profile_description.component";

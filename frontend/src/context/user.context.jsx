@@ -4,7 +4,7 @@ const UserContext = React.createContext();
 
 export const UserProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = React.useState(false);
-  const [username, setUsername] = React.useState("");
+  const [username, setUsername] = React.useState("Logged Out");
 
   const login = (username) => {
     setUsername(username);

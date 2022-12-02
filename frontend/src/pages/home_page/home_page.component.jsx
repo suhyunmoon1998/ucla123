@@ -7,15 +7,14 @@ import "./home_page.styles.css";
 const HomePage = () => {
   const [products, setProducts] = useState([])
 
-  const getProductById = async() =>{
+  const getProducts = async() =>{
     await axios
       .get('http://localhost:4000/app/products')
       .then(response => {setProducts(response.data)})
   }
 
-  getProductById();
+  getProducts();
 //  console.log(products)
-  let product_list = require('./product_list.json');
   
   return (
     <div className="home-page">
