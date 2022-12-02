@@ -1,6 +1,5 @@
-import React, { Component, useEffect } from "react";
-import AWS from "aws-sdk";
-import { Navigate, Link } from "react-router-dom";
+import React, { Component } from "react";
+import { Navigate } from "react-router-dom";
 import axios from "axios";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { initializeApp } from "firebase/app";
@@ -9,13 +8,6 @@ import Dropdown from "../../components/add_products/dropdown.component";
 
 import "./add_product_page.styles.css";
 
-AWS.config.region = "us-east-2";
-const s3 = new AWS.S3({
-  region: "us-east-2",
-  accessKeyId: "AKIATSYGJVTKRBXSFO4S",
-  secretAccessKey: "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",
-});
-
 const firebaseConfig = {
   apiKey: "AIzaSyD3-Q74W-2RkAR2mgkwgSNG1KFTIHIgiUo",
   authDomain: "ucla-clothing-store.firebaseapp.com",
@@ -23,103 +15,8 @@ const firebaseConfig = {
   storageBucket: "ucla-clothing-store.appspot.com",
   messagingSenderId: "434065109244",
   appId: "1:434065109244:web:16ebd60fcb572bee6a2779",
-  measurementId: "G-LFG6ZJHRL8"
+  measurementId: "G-LFG6ZJHRL8",
 };
-
-
-// DOES NOT WORK
-function getSignedRequest(file) {
-  const s3Params = {
-    Bucket: "35l",
-    Key: file.name,
-    Expires: 60,
-    ContentType: file.type,
-    ACL: "public-read",
-  };
-
-  // presigned_post = s3.generate_presigned_post(
-  //   (Bucket = S3_BUCKET),
-  //   (Key = file_name),
-  //   (Fields = { acl: "public-read", "Content-Type": file_type }),
-  //   (Conditions = [{ acl: "public-read" }, { "Content-Type": file_type }]),
-  //   (ExpiresIn = 3600)
-  // );
-
-  // return json.dumps({
-  //   data: presigned_post,
-  //   url: "https://%s.s3.amazonaws.com/%s" % (S3_BUCKET, file_name),
-  // });
-
-  s3.createPresignedPost(s3Params, async (err, data) => {
-    if (err) {
-      console.log(err);
-      alert("Could not complete image upload.");
-    } else {
-      const responseData = {
-        signedRequest: data,
-        url: `https://35l.s3.amazonaws.com/${file.name}`,
-      };
-      uploadFile(file, responseData.signedRequest, responseData.url);
-      return responseData.url;
-    }
-  });
-
-  return "";
-
-  //   s3.getSignedUrl("putObject", s3Params, (err, data) => {
-  //     if (err) {
-  //       console.log(err);
-  //       alert("Could not get signed URL.");
-  //     } else {
-  //       console.log("here");
-  //       console.log(data);
-  //       const responseData = {
-  //         signedRequest: data,
-  //         url: `https://35l.s3.amazonaws.com/${file.name}`,
-  //       };
-  //       console.log(responseData);
-  //       uploadFile(file, responseData.signedRequest, responseData.url);
-  //     }
-  //   });
-}
-
-async function uploadFile(file, signedRequest, url) {
-  return;
-  //   var postData = new FormData();
-  //   for (const key in signedRequest.fields) {
-  //     postData.append(key, signedRequest.fields[key]);
-  //   }
-  //   postData.append("file", file);
-
-  //   await fetch(signedRequest.url, {
-  //     method: "POST",
-  //     headers: {
-  //       "x-amz-acl": "public-read",
-  //     },
-  //     body: postData,
-  //   })
-  //     .then(() => {
-  //       console.log("Done");
-  //       console.log(url);
-  //       return url;
-  //     })
-  //     .catch((error) => {
-  //       alert("Could not upload file. Please try again.");
-  //     });
-
-  //   const xhr = new XMLHttpRequest();
-  //   xhr.open("PUT", signedRequest);
-  //   xhr.onreadystatechange = () => {
-  //     if (xhr.readyState === 4) {
-  //       if (xhr.status === 200) {
-  //         console.log("File uploaded successfully");
-  //       } else {
-  //         alert("Could not upload file.");
-  //       }
-  //     }
-  //   };
-  //   xhr.send(file);
-}
 
 class addproduct extends Component {
   constructor() {
@@ -207,22 +104,22 @@ class addproduct extends Component {
   changeImage(event) {
     const file = event.target.files[0];
     if (!file) {
-      alert("Please choose a file first!")
+      alert("Please choose a file first!");
+      return;
     }
 
-    const url = getSignedRequest(file); // the url will be generated, but the image generated does not work as of now
-    
     const app = initializeApp(firebaseConfig);
     const storage = getStorage(app);
 
     const storageRef = ref(storage, `/files/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
-    
 
     uploadTask.on(
       "state_changed",
       (snapshot) => {
-        const percent = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        const percent = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
       },
       (err) => console.log(err),
       () => {
@@ -230,21 +127,20 @@ class addproduct extends Component {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           console.log(url);
           this.setState({
-            image: url
-          })
-        })}
+            image: url,
+          });
+        });
+      }
     );
-      
-
 
     if (event.target.files && event.target.files[0]) {
       this.setState({
-        displayImage: URL.createObjectURL(file)
+        displayImage: URL.createObjectURL(file),
       });
     }
-    console.log(this.state.url)
+    console.log(this.state.url);
   }
-  
+
   handleSubmit = (e) => {
     e.preventDefault();
 
@@ -283,7 +179,7 @@ class addproduct extends Component {
         let addProductres = response.data;
         this.setState({ isAdded: true });
         console.log(response);
-        console.log("\n")
+        console.log("\n");
         alert(addProductres.message);
       });
 
