@@ -60,6 +60,7 @@ router.post("/addtocart", (request, response) => {
         });
 
         if (duplicate) return;
+        duplicate = false;
 
         cart.forEach((item) => {
           if (item.name === new_item.name) {
@@ -186,6 +187,7 @@ router.post("/addtoliked", (request, response) => {
   const userSearch = { username: request.body.username };
   const new_item = request.body.product;
   let liked = [];
+  let selling = [];
 
   // find the user and get their current liked
   User.findOne(userSearch)
@@ -193,6 +195,18 @@ router.post("/addtoliked", (request, response) => {
       if (data) {
         liked = data.liked;
         let duplicate = false;
+
+        selling = data.forSale;
+        selling.forEach((item) => {
+          if (item.title === new_item.name) {
+            response.json({ status: 0, message: "You cannot like an item that you are selling" });
+            duplicate=true;
+            return;
+          }
+        });
+
+        if (duplicate) return;
+        duplicate = false;
 
         liked.forEach((item) => {
           if (item.name === new_item.name) {
