@@ -15,7 +15,7 @@ const ProductCard = ({ name, condition, image_url, price, size }) => {
   const { username } = useUserContext();
 
   function addToCart() {
-    const productData = {name, condition, image_url, price, size};
+    const productData = { name, condition, image_url, price, size };
 
     const cartObject = { username, product: productData };
     setCartLoading(true);
@@ -27,8 +27,8 @@ const ProductCard = ({ name, condition, image_url, price, size }) => {
         console.log(response);
         const data = response.data;
 
-        if (data.message === "Login First") {
-          alert("Please login before adding to cart");
+        if (data.status === 0) {
+          alert(data.message);
           return;
         }
       });
@@ -36,7 +36,6 @@ const ProductCard = ({ name, condition, image_url, price, size }) => {
 
   function addToLiked() {
     const productData = { name, condition, image_url, price, size };
-
     const likedObject = { username, product: productData };
     setLikedLoading(true);
 
@@ -47,13 +46,14 @@ const ProductCard = ({ name, condition, image_url, price, size }) => {
         console.log(response);
         const data = response.data;
 
-        if (data.message === "Login First") {
-          alert("Please login before adding to liked");
+        if (data.status === 0) {
+          alert(data.message);
           return;
+        } else {
+          setBtnClass(true);
         }
       });
   }
-
 
   return (
     <div className="product-card">
@@ -83,7 +83,6 @@ const ProductCard = ({ name, condition, image_url, price, size }) => {
         </button>
         <button
           onClick={() => {
-            btnClass ? setBtnClass(false) : setBtnClass(true);
             addToLiked();
           }}
           className="like-button"

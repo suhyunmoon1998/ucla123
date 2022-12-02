@@ -35,7 +35,7 @@ router.post("/signin", (request, response) => {
 
 router.post("/addtocart", (request, response) => {
   if (request.body.username === undefined) {
-    response.json({ status: 0, message: "Login First" });
+    response.json({ status: 0, message: "Please login to like item" });
     return;
   }
 
@@ -46,38 +46,43 @@ router.post("/addtocart", (request, response) => {
   // find the user and get their current cart
   User.findOne(userSearch)
     .then((data) => {
-      console.log("data", data);
       if (data) {
         cart = data.cart;
+        let duplicate = false
 
-        if (cart.includes(new_item)) {
-          response.json({ status: 0, message: "Item already in cart" });
-          return;
-        }
+        cart.forEach((item) => {
+          if (item.name === new_item.name) {
+            response.json({ status: 0, message: "Item already in cart" });
+            duplicate = true
+            return;
+          }
+        });
 
         cart.push(new_item);
 
-        User.updateOne(userSearch, { $set: { cart: cart } }).then((data) => {
-          if (data) {
-            response.json({ status: 1, message: "Item added to cart" });
-          } else {
-            response.json({ status: 0, message: "Item not added to cart" });
-          }
-        });
+        if (duplicate === false) {
+          User.updateOne(userSearch, { $set: { cart: cart } }).then((data) => {
+            console.log("inside updateOne");
+            if (data) {
+              response.json({ status: 1, message: "Item added to cart" });
+            } else {
+              response.json({ status: 0, message: "Item not added to cart" });
+            }
+          });
+        }
       } else {
-        response.json({ status: 0, message: "Login First" });
+        response.json({ status: 0, message: "Please login to add to cart" });
         return;
       }
     })
     .catch((error) => {
-      response.json(error);
       return;
     });
 });
 
 router.post("/addtoliked", (request, response) => {
   if (request.body.username === undefined) {
-    response.json({ status: 0, message: "Login First" });
+    response.json({ status: 0, message: "Please login to add to cart" });
     return;
   }
 
@@ -90,28 +95,36 @@ router.post("/addtoliked", (request, response) => {
     .then((data) => {
       if (data) {
         liked = data.liked;
+        let duplicate = false;
 
-        if (liked.includes(new_item)) {
-          response.json({ status: 0, message: "Item already in liked" });
-          return;
-        }
+        liked.forEach((item) => {
+          if (item.name === new_item.name) {
+            response.json({ status: 0, message: "Item already in liked" });
+            duplicate = true;
+            return;
+          }
+        });
 
         liked.push(new_item);
 
-        User.updateOne(userSearch, { $set: { liked: liked } }).then((data) => {
-          if (data) {
-            response.json({ status: 1, message: "Item added to liked" });
-          } else {
-            response.json({ status: 0, message: "Item not added to liked" });
-          }
-        });
+        if (duplicate === false) {
+          User.updateOne(userSearch, { $set: { liked: liked } }).then(
+            (data) => {
+              console.log("inside updateOne");
+              if (data) {
+                response.json({ status: 1, message: "Item added to liked" });
+              } else {
+                response.json({ status: 0, message: "Could not like item." });
+              }
+            }
+          );
+        }
       } else {
-        response.json({ status: 0, message: "Login First" });
+        response.json({ status: 0, message: "Please login to like item" });
         return;
       }
     })
     .catch((error) => {
-      response.json(error);
       return;
     });
 });
