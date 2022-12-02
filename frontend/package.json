@@ -15,6 +15,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "dropdown-menu": "^0.1.1",
+    "firebase": "^9.14.0",
     "mongodb": "4.11",
     "mongoose": "^6.7.5",
     "node-fetch": "^3.2.10",
