@@ -54,15 +54,19 @@ const HomePage = () => {
   getProducts();
   
   return (
-    <div className="home-page">
-      <h1>Home Page</h1>
-      <div className="filter-container" style={{width: 250}}>
-        <Dropdown
-          placeHolder="Filter by..."
-          options={types}
-          onChange= {changeFilter}
-        />
-      </div>
+     <div className="home-page">
+      <center>
+        <div className="h1">
+          <h1>Home Page</h1>
+        </div>
+        <div className="filter-container" style={{ width: 250 }}>
+          <Dropdown
+            placeHolder="Filter by..."
+            options={types}
+            onChange={changeFilter}
+          />
+        </div>
+      </center>
       <div className="products">
         {filteredProducts.map((product, index) => {
             return <ProductCard key={index} name={product.title} condition={product.condition} image_url={product.image} price={product.price} size={product.size}/>
