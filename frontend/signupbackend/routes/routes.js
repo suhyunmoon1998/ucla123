@@ -140,6 +140,45 @@ router.post("/removefromcart", (request, response) => {
     });
 });
 
+router.post("/emptycart", (request, response) => {
+  if (request.body.username === undefined) {
+    response.json({ status: 0, message: "Please login to remove from cart" });
+    return;
+  }
+
+  const userSearch = { username: request.body.username };
+
+  // find the user and get their current cart
+  User.findOne(userSearch)
+    .then((data) => {
+      if (data) {
+
+        User.updateOne(userSearch, { $set: { cart: [] } }).then(
+          (data) => {
+            if (data) {
+              response.json({ status: 1, message: "Cart was emptied" });
+            } else {
+              response.json({
+                status: 0,
+                message: "Cart was not emptied",
+              });
+            }
+          }
+        );
+      } else {
+        response.json({
+          status: 0,
+          message: "Please login to checkout",
+        });
+        return;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      return;
+    });
+});
+
 router.post("/isliked", (request, response) => {
   if (request.body.username === undefined) {
     response.json({ status: 0, message: "Please login to add to cart" });
@@ -247,12 +286,15 @@ router.post("/removefromliked", (request, response) => {
 
   const userSearch = { username: request.body.username };
   const new_item = request.body.product;
+
+
   let cart = [];
   let new_cart = [];
 
   // find the user and get their current cart
   User.findOne(userSearch)
     .then((data) => {
+
       if (data) {
         cart = data.liked;
 
@@ -368,5 +410,14 @@ router.get("/users/:name", function (req, res) {
       console.log(error);
     });
 });
+
+router.delete('/removeproduct', function(req, res) {
+  const item = req.body.product; 
+  console.log("item", item)
+  Item.deleteOne(item)
+  .then((response) => {
+      console.log(response)
+  })
+})
 
 module.exports = router;
