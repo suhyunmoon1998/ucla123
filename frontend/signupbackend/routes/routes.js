@@ -42,13 +42,24 @@ router.post("/addtocart", (request, response) => {
   const userSearch = { username: request.body.username };
   const new_item = request.body.product;
   let cart = [];
-
+  let selling = [];
   // find the user and get their current cart
   User.findOne(userSearch)
     .then((data) => {
       if (data) {
         cart = data.cart;
         let duplicate = false;
+        // console.log(selling)
+        selling = data.forSale;
+        selling.forEach((item) => {
+          if (item.title === new_item.name) {
+            response.json({ status: 0, message: "You cannot buy an item that you are selling" });
+            duplicate=true;
+            return;
+          }
+        });
+
+        if (duplicate) return;
 
         cart.forEach((item) => {
           if (item.name === new_item.name) {
