@@ -48,7 +48,11 @@ const Login = () => {
     <div className="auth-from-container">
       {/* <h1>Welcome to our shopping mall.</h1>
         <h1>Please login to continue</h1> */}
-      <h1>Login</h1>
+      <center>
+        <div className="h1">
+          <h1>Login</h1>
+        </div>
+      </center>
       <div className="auth-form">
         <form className="login-form" onSubmit={onSubmit}>
           <label className="login-headers">Username</label>

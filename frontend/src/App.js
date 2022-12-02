@@ -27,7 +27,7 @@ function App() {
   return (
       <div className="app">
         <Routes>
-          <Route path="*" element={<NavBar />}>
+          <Route path="*" element={<F_NavBar  />}>
             <Route path="" element={<Login />}></Route>
             <Route path="register" element={<Register />} />
           </Route>
