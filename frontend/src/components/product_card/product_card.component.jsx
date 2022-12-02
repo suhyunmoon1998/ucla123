@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import useUserContext from "../../context/user.context";
@@ -14,8 +14,21 @@ const ProductCard = ({ name, condition, image_url, price, size }) => {
 
   const { username } = useUserContext();
 
+  useEffect(() => {
+    const productData = { name, condition, image_url, price, size };
+    const likedObject = { username, product: productData };
+    
+    axios
+    .post("http://localhost:4000/app/isliked", likedObject)
+    .then((response) => {
+      if (response.data.status === 2) {
+        setBtnClass(true)
+      }
+    });
+  }, [])
+
   function addToCart() {
-    const productData = {name, condition, image_url, price, size};
+    const productData = { name, condition, image_url, price, size };
 
     const cartObject = { username, product: productData };
     setCartLoading(true);
@@ -27,8 +40,8 @@ const ProductCard = ({ name, condition, image_url, price, size }) => {
         console.log(response);
         const data = response.data;
 
-        if (data.message === "Login First") {
-          alert("Please login before adding to cart");
+        if (data.status === 0) {
+          alert(data.message);
           return;
         }
       });
@@ -36,24 +49,50 @@ const ProductCard = ({ name, condition, image_url, price, size }) => {
 
   function addToLiked() {
     const productData = { name, condition, image_url, price, size };
-
     const likedObject = { username, product: productData };
     setLikedLoading(true);
+    let itemLiked = false;
 
     axios
-      .post("http://localhost:4000/app/addtoliked", likedObject)
+      .post("http://localhost:4000/app/isliked", likedObject)
       .then((response) => {
-        setLikedLoading(false);
-        console.log(response);
-        const data = response.data;
+        if (response.data.status === 2) {
+          itemLiked = true;
+        }
 
-        if (data.message === "Login First") {
-          alert("Please login before adding to liked");
-          return;
+        if (itemLiked) {
+          axios
+            .post("http://localhost:4000/app/removefromliked", likedObject)
+            .then((response) => {
+              setLikedLoading(false);
+              console.log(response);
+              const data = response.data;
+
+              if (data.status === 0) {
+                alert(data.message);
+                return;
+              } else {
+                setBtnClass(false);
+              }
+            });
+        } else {
+          axios
+            .post("http://localhost:4000/app/addtoliked", likedObject)
+            .then((response) => {
+              setLikedLoading(false);
+              console.log(response);
+              const data = response.data;
+
+              if (data.status === 0) {
+                alert(data.message);
+                return;
+              } else {
+                setBtnClass(true);
+              }
+            });
         }
       });
   }
-
 
   return (
     <div className="product-card">
@@ -83,7 +122,6 @@ const ProductCard = ({ name, condition, image_url, price, size }) => {
         </button>
         <button
           onClick={() => {
-            btnClass ? setBtnClass(false) : setBtnClass(true);
             addToLiked();
           }}
           className="like-button"

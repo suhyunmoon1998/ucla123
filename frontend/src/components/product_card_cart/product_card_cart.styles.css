@@ -30,6 +30,7 @@
     margin-left: 20px;
     width: 100%;
     max-width: 275px;
+    overflow: hidden;
 }
 
 .image-cart-product {
@@ -57,6 +58,7 @@
 }
 
 .price-quant-product-card-cart {
+    width: 150px;
     margin-left: auto;
     padding-top: 10px;
     padding-right: 20px;
@@ -71,6 +73,18 @@
     font-size: 18px;
     color: grey;
 }
+
+.remove-card-cart {
+    font-size: 12px;
+    color: grey;
+    margin-top: 15px;
+}
+
+.remove-card-cart:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 /* .condition {
     font-size: 14px;
 }  */
