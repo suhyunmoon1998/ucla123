@@ -11,7 +11,7 @@
 8. Run npm start
 
 ## Project Description
-Our project is a web application that allows users to buy and sell clothing items. Users can create accounts and upload their own items for sale such as shoes, shirts, and pants. Users can also purchase items that other people are selling using our checkout process. All users can view a profile page where they can see what’s currently in their cart, items that they currently have for sale, and basic user information such as their username and email. Finally, users can setup alerts to notify them when certain items are in stock or when certain items reach a specific price.
+Our project is a web application that allows users to buy and sell clothing items. Users can create accounts and upload their own items for sale such as shoes, shirts, and pants. Users can also purchase items that other people are selling using our checkout process. All users can view a profile page where they can see what’s currently in their cart, items that they currently have for sale, and basic user information such as their username and email. Users can also like items and filter through items to make the shopping experinece easier and faster.
 
 
 
