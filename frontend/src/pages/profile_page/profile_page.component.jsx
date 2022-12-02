@@ -6,7 +6,11 @@ import ProfileDescription from "../../components/profile_description/profile_des
 const ProfilePage = () => {
   return (
   <div className="profile-container">
-    <h1>Profile</h1>
+     <center>
+        <div className="h1">
+          <h1>Profile</h1>
+        </div>
+      </center>
     <ProfileDescription />
     <ProfileTabs />
   </div>
