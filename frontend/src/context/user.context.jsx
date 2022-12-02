@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
   };
 
   const logout = () => {
-    setUsername("");
+    setUsername("Logged Out");
     setLoggedIn(false);
   };
 

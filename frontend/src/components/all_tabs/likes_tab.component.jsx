@@ -28,8 +28,6 @@ const LikesTab = () => {
   
   getLikedProducts();
 
-  console.log(likedProducts)
-
   return (
     <div className="LikesTab">
     {/* Likes tab content will go here */}
