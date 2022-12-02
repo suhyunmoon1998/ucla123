@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import useUserContext from "../../context/user.context";
@@ -13,6 +13,19 @@ const ProductCard = ({ name, condition, image_url, price, size }) => {
   const [likedLoading, setLikedLoading] = useState(false);
 
   const { username } = useUserContext();
+
+  useEffect(() => {
+    const productData = { name, condition, image_url, price, size };
+    const likedObject = { username, product: productData };
+    
+    axios
+    .post("http://localhost:4000/app/isliked", likedObject)
+    .then((response) => {
+      if (response.data.status === 2) {
+        setBtnClass(true)
+      }
+    });
+  }, [])
 
   function addToCart() {
     const productData = { name, condition, image_url, price, size };
@@ -38,19 +51,45 @@ const ProductCard = ({ name, condition, image_url, price, size }) => {
     const productData = { name, condition, image_url, price, size };
     const likedObject = { username, product: productData };
     setLikedLoading(true);
+    let itemLiked = false;
 
     axios
-      .post("http://localhost:4000/app/addtoliked", likedObject)
+      .post("http://localhost:4000/app/isliked", likedObject)
       .then((response) => {
-        setLikedLoading(false);
-        console.log(response);
-        const data = response.data;
+        if (response.data.status === 2) {
+          itemLiked = true;
+        }
 
-        if (data.status === 0) {
-          alert(data.message);
-          return;
+        if (itemLiked) {
+          axios
+            .post("http://localhost:4000/app/removefromliked", likedObject)
+            .then((response) => {
+              setLikedLoading(false);
+              console.log(response);
+              const data = response.data;
+
+              if (data.status === 0) {
+                alert(data.message);
+                return;
+              } else {
+                setBtnClass(false);
+              }
+            });
         } else {
-          setBtnClass(true);
+          axios
+            .post("http://localhost:4000/app/addtoliked", likedObject)
+            .then((response) => {
+              setLikedLoading(false);
+              console.log(response);
+              const data = response.data;
+
+              if (data.status === 0) {
+                alert(data.message);
+                return;
+              } else {
+                setBtnClass(true);
+              }
+            });
         }
       });
   }

@@ -97,8 +97,6 @@ router.post("/removefromcart", (request, response) => {
         cart = data.cart;
 
         cart.forEach((item) => {
-          console.log(item);
-          console.log(new_item);
           if (item.name !== new_item.name) {
             new_cart.push(item);
           }
@@ -126,6 +124,44 @@ router.post("/removefromcart", (request, response) => {
     })
     .catch((error) => {
       console.log(error);
+      return;
+    });
+});
+
+router.post("/isliked", (request, response) => {
+  if (request.body.username === undefined) {
+    response.json({ status: 0, message: "Please login to add to cart" });
+    return;
+  }
+
+  const userSearch = { username: request.body.username };
+  const new_item = request.body.product;
+  let liked = [];
+
+  // find the user and get their current liked
+  User.findOne(userSearch)
+    .then((data) => {
+      if (data) {
+        liked = data.liked;
+        let wasLiked = false;
+
+        liked.forEach((item) => {
+          if (item.name === new_item.name) {
+            response.json({ status: 2, message: "Item has been liked" });
+            wasLiked = true;
+            return;
+          }
+        });
+
+        if (wasLiked === false) {
+          response.json({ status: 3, message: "Item has not been liked" });
+        }
+      } else {
+        response.json({ status: 0, message: "Please login to like item" });
+        return;
+      }
+    })
+    .catch((error) => {
       return;
     });
 });
@@ -178,6 +214,55 @@ router.post("/addtoliked", (request, response) => {
     });
 });
 
+router.post("/removefromliked", (request, response) => {
+  if (request.body.username === undefined) {
+    response.json({ status: 0, message: "Please login to remove from liked" });
+    return;
+  }
+
+  const userSearch = { username: request.body.username };
+  const new_item = request.body.product;
+  let cart = [];
+  let new_cart = [];
+
+  // find the user and get their current cart
+  User.findOne(userSearch)
+    .then((data) => {
+      if (data) {
+        cart = data.liked;
+
+        cart.forEach((item) => {
+          if (item.name !== new_item.name) {
+            new_cart.push(item);
+          }
+        });
+
+        User.updateOne(userSearch, { $set: { liked: new_cart } }).then(
+          (data) => {
+            if (data) {
+              response.json({ status: 1, message: "Item removed from liked" });
+            } else {
+              response.json({
+                status: 0,
+                message: "Item not removed from liked",
+              });
+            }
+          }
+        );
+      } else {
+        response.json({
+          status: 0,
+          message: "Please login to remove from liked",
+        });
+        return;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      return;
+    });
+});
+
 router.post("/upload", (request, response) => {
   const product = request.body.productData;
   const username = request.body.userData.username;
@@ -200,9 +285,7 @@ router.post("/upload", (request, response) => {
         // upload item to all item database
         uploadedItem
           .save()
-          .then((data) => {
-            console.log("data", data);
-          })
+          .then((data) => {})
           .catch((error) => {
             response.json(error);
           });
