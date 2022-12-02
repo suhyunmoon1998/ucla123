@@ -54,6 +54,7 @@ const ProductCard = ({ name, condition, image_url, price, size }) => {
       });
   }
 
+
   return (
     <div className="product-card">
       <div className="image-product-container">

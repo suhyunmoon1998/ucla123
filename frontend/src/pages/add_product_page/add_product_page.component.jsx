@@ -2,7 +2,9 @@ import React, { Component, useEffect } from "react";
 import AWS from "aws-sdk";
 import { Navigate, Link } from "react-router-dom";
 import axios from "axios";
-
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
 import Dropdown from "../../components/add_products/dropdown.component";
 
 import "./add_product_page.styles.css";
@@ -13,6 +15,17 @@ const s3 = new AWS.S3({
   accessKeyId: "AKIATSYGJVTKRBXSFO4S",
   secretAccessKey: "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",
 });
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD3-Q74W-2RkAR2mgkwgSNG1KFTIHIgiUo",
+  authDomain: "ucla-clothing-store.firebaseapp.com",
+  projectId: "ucla-clothing-store",
+  storageBucket: "ucla-clothing-store.appspot.com",
+  messagingSenderId: "434065109244",
+  appId: "1:434065109244:web:16ebd60fcb572bee6a2779",
+  measurementId: "G-LFG6ZJHRL8"
+};
+
 
 // DOES NOT WORK
 function getSignedRequest(file) {
@@ -114,12 +127,13 @@ class addproduct extends Component {
     this.state = {
       title: "",
       description: "",
-      condition: "hello",
+      condition: "",
       type: "",
       price: null,
       image: null,
       displayImage: null,
       isAdded: false,
+      imageUploadPercent: null,
       conditions: [
         {
           value: "New",
@@ -192,37 +206,87 @@ class addproduct extends Component {
   }
   changeImage(event) {
     const file = event.target.files[0];
+    if (!file) {
+      alert("Please choose a file first!")
+    }
 
     const url = getSignedRequest(file); // the url will be generated, but the image generated does not work as of now
+    
+    const app = initializeApp(firebaseConfig);
+    const storage = getStorage(app);
+
+    const storageRef = ref(storage, `/files/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+    
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const percent = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+      },
+      (err) => console.log(err),
+      () => {
+        // download url
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          console.log(url);
+          this.setState({
+            image: url
+          })
+        })}
+    );
+      
+
 
     if (event.target.files && event.target.files[0]) {
       this.setState({
-        image: url,
         displayImage: URL.createObjectURL(file)
       });
     }
+    console.log(this.state.url)
   }
+  
   handleSubmit = (e) => {
     e.preventDefault();
-    const product = {
+
+    if (this.props.loggedIn === false) {
+      alert("Please log in to add a product");
+      return;
+    }
+
+    if (
+      this.state.title === "" ||
+      this.state.price === null ||
+      this.state.condition === "" ||
+      this.state.type === "" ||
+      this.state.description === ""
+    ) {
+      alert("Please fill in all fields");
+      return;
+    }
+
+    const userData = { username: this.props.username };
+    const productData = {
       title: this.state.title,
       size: this.state.description,
-      image: "url",
+      image: this.state.image,
       condition: this.state.condition,
       type: this.state.type,
       price: this.state.price,
     };
+
+    const combined = { userData, productData };
+
     // pass into mongo
     axios
-      .post("http://localhost:4000/app/upload", product)
+      .post("http://localhost:4000/app/upload", combined)
       .then((response) => {
-        // let addProductres = response.data;
+        let addProductres = response.data;
         this.setState({ isAdded: true });
-        console.log(response)
-        // console.log("\n")
-        // alert(addProductres.message);
+        console.log(response);
+        console.log("\n")
+        alert(addProductres.message);
       });
-      
+
     // window.location = "/home";
     this.setState({
       //fullName: "",
@@ -277,11 +341,11 @@ class addproduct extends Component {
               <div className="form-headers">
                 <label>Condition</label>
               </div>
-                <Dropdown
-                  placeHolder="Select..."
-                  options={this.state.conditions}
-                  onChange={this.changeCondition}
-                />
+              <Dropdown
+                placeHolder="Select..."
+                options={this.state.conditions}
+                onChange={this.changeCondition}
+              />
             </div>
             <div className="drop-type">
               <div className="form-headers">

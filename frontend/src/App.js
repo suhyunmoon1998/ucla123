@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import { UserProvider } from "./context/user.context";
+import useUserContext from "./context/user.context";
+
 
 import HomePage from "./pages/home_page/home_page.component";
 import ProfilePage from "./pages/profile_page/profile_page.component";
@@ -16,13 +17,14 @@ import AddProduct from "./pages/add_product_page/add_product_page.component";
 import "./App.css";
 
 function App() {
+  const {username, loggedIn} = useUserContext();
+
   //const [currentForm, setCurrentForm] = useState("login");
 
   //  const toggleForm = (formName) => {
   //   setCurrentForm(formName);
   // };
   return (
-    <UserProvider>
       <div className="app">
         <Routes>
           <Route path="*" element={<NavBar />}>
@@ -35,11 +37,10 @@ function App() {
             <Route path="register" element={<Register />} />
             <Route path="cart" element={<CartPage />} />
             <Route path="checkout" element={<CheckoutPage />} />
-            <Route path="addproduct" element={<AddProduct />} />
+            <Route path="addproduct" element={<AddProduct username={username} loggedIn={loggedIn} />} />
           </Route>
         </Routes>
       </div>
-    </UserProvider>
   );
 }
 
