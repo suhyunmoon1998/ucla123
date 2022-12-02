@@ -35,7 +35,7 @@ router.post("/signin", (request, response) => {
 
 router.post("/addtocart", (request, response) => {
   if (request.body.username === undefined) {
-    response.json({ status: 0, message: "Please login to like item" });
+    response.json({ status: 0, message: "Please login to add to cart" });
     return;
   }
 
@@ -48,12 +48,12 @@ router.post("/addtocart", (request, response) => {
     .then((data) => {
       if (data) {
         cart = data.cart;
-        let duplicate = false
+        let duplicate = false;
 
         cart.forEach((item) => {
           if (item.name === new_item.name) {
             response.json({ status: 0, message: "Item already in cart" });
-            duplicate = true
+            duplicate = true;
             return;
           }
         });
@@ -62,7 +62,6 @@ router.post("/addtocart", (request, response) => {
 
         if (duplicate === false) {
           User.updateOne(userSearch, { $set: { cart: cart } }).then((data) => {
-            console.log("inside updateOne");
             if (data) {
               response.json({ status: 1, message: "Item added to cart" });
             } else {
@@ -76,6 +75,57 @@ router.post("/addtocart", (request, response) => {
       }
     })
     .catch((error) => {
+      return;
+    });
+});
+
+router.post("/removefromcart", (request, response) => {
+  if (request.body.username === undefined) {
+    response.json({ status: 0, message: "Please login to remove from cart" });
+    return;
+  }
+
+  const userSearch = { username: request.body.username };
+  const new_item = request.body.productData;
+  let cart = [];
+  let new_cart = [];
+
+  // find the user and get their current cart
+  User.findOne(userSearch)
+    .then((data) => {
+      if (data) {
+        cart = data.cart;
+
+        cart.forEach((item) => {
+          console.log(item);
+          console.log(new_item);
+          if (item.name !== new_item.name) {
+            new_cart.push(item);
+          }
+        });
+
+        User.updateOne(userSearch, { $set: { cart: new_cart } }).then(
+          (data) => {
+            if (data) {
+              response.json({ status: 1, message: "Item removed from cart" });
+            } else {
+              response.json({
+                status: 0,
+                message: "Item not removed from cart",
+              });
+            }
+          }
+        );
+      } else {
+        response.json({
+          status: 0,
+          message: "Please login to remove from cart",
+        });
+        return;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
       return;
     });
 });
@@ -110,7 +160,6 @@ router.post("/addtoliked", (request, response) => {
         if (duplicate === false) {
           User.updateOne(userSearch, { $set: { liked: liked } }).then(
             (data) => {
-              console.log("inside updateOne");
               if (data) {
                 response.json({ status: 1, message: "Item added to liked" });
               } else {

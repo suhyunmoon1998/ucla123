@@ -54,7 +54,7 @@ class register extends Component {
     axios
       .post("http://localhost:4000/app/signup", registered)
       .then((response) => console.log(response.data));
-    // window.location = "/home";
+    window.location = "/home";
     this.setState({
       //fullName: "",
       username: "",
@@ -97,14 +97,18 @@ class register extends Component {
               onChange={this.changePassword}
               value={this.state.password}
             />
-            <Link to="/" className="submit-button-link" >
-              <input type="submit" className=" submit-button" value="Register" ></input>
-            </Link>
+            <input
+              type="submit"
+              className=" submit-button"
+              value="Register"
+            ></input>
           </form>
         </div>
         <div className="no-account">
           <h2 className="link-btn-text">Already have an account? Login </h2>
-          <Link to="/" className="link-btn-register" >here</Link>
+          <Link to="/" className="link-btn-register">
+            here
+          </Link>
         </div>
       </div>
     );
