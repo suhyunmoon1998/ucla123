@@ -29,8 +29,12 @@ const User = new mongoose.Schema({
   },
   liked: {
     type: Array,
-    default: []
-  }
+    default: [],
+  },
+  forSale: {
+    type: Array,
+    default: [],
+  },
 });
 
 module.exports = mongoose.model("mydb", User);

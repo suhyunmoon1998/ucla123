@@ -114,7 +114,7 @@ class addproduct extends Component {
     this.state = {
       title: "",
       description: "",
-      condition: "hello",
+      condition: "",
       type: "",
       price: null,
       image: null,
@@ -198,13 +198,31 @@ class addproduct extends Component {
     if (event.target.files && event.target.files[0]) {
       this.setState({
         image: url,
-        displayImage: URL.createObjectURL(file)
+        displayImage: URL.createObjectURL(file),
       });
     }
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    const product = {
+
+    if (this.props.loggedIn === false) {
+      alert("Please log in to add a product");
+      return;
+    }
+
+    if (
+      this.state.title === "" ||
+      this.state.price === null ||
+      this.state.condition === "" ||
+      this.state.type === "" ||
+      this.state.description === ""
+    ) {
+      alert("Please fill in all fields");
+      return;
+    }
+
+    const userData = { username: this.props.username };
+    const productData = {
       title: this.state.title,
       size: this.state.description,
       image: "url",
@@ -212,17 +230,20 @@ class addproduct extends Component {
       type: this.state.type,
       price: this.state.price,
     };
+
+    const combined = { userData, productData };
+
     // pass into mongo
     axios
-      .post("http://localhost:4000/app/upload", product)
+      .post("http://localhost:4000/app/upload", combined)
       .then((response) => {
-        // let addProductres = response.data;
+        let addProductres = response.data;
         this.setState({ isAdded: true });
-        console.log(response)
-        // console.log("\n")
-        // alert(addProductres.message);
+        console.log(response);
+        console.log("\n")
+        alert(addProductres.message);
       });
-      
+
     // window.location = "/home";
     this.setState({
       //fullName: "",
@@ -277,11 +298,11 @@ class addproduct extends Component {
               <div className="form-headers">
                 <label>Condition</label>
               </div>
-                <Dropdown
-                  placeHolder="Select..."
-                  options={this.state.conditions}
-                  onChange={this.changeCondition}
-                />
+              <Dropdown
+                placeHolder="Select..."
+                options={this.state.conditions}
+                onChange={this.changeCondition}
+              />
             </div>
             <div className="drop-type">
               <div className="form-headers">
