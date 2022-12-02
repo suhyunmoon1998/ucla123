@@ -8,6 +8,12 @@
     font-size: 30px;
 }
 
+.no-items-cart {
+    font-size: 25px;
+    color: gray;
+    text-align: center;
+}
+
 .products-in-cart {
     width: 70%;
     padding: 5% 5% 2% 2%;

@@ -1,10 +1,10 @@
 import React from "react";
-
+import useUserContext from "../../context/user.context";
 import "./profile_description.styles.css"
 
 
 const ProfileDescription = () => {
-    const username = "Varun Kumar"
+    let username = useUserContext().username;
     return (
         <div className="profile-description">
             <img 
